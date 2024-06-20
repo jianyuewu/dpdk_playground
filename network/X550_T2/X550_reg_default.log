@@ -1,0 +1,1103 @@
+0x042A4: LINKS (Link Status register)                 0x70000080
+       Link Status:                                   up
+       Link Speed:                                    10G
+0x05080: FCTRL (Filter Control register)              0x00000400
+       Broadcast Accept:                              enabled
+       Unicast Promiscuous:                           disabled
+       Multicast Promiscuous:                         disabled
+       Store Bad Packets:                             disabled
+0x04294: MFLCN (TabMAC Flow Control register)         0x0000000A
+       Receive Flow Control Packets:                  enabled
+       Discard Pause Frames:                          enabled
+       Pass MAC Control Frames:                       disabled
+       Receive Priority Flow Control Packets:         disabled
+0x05088: VLNCTRL (VLAN Control register)              0x48008100
+       VLAN Mode:                                     disabled
+       VLAN Filter:                                   enabled
+0x02100: SRRCTL0 (Split and Replic Rx Control 0)      0x02000402
+       Receive Buffer Size:                           2KB
+0x03D00: FCCFG (Flow Control Configuration)           0x00000008
+       Transmit Flow Control:                         enabled
+       Priority Flow Control:                         disabled
+0x04240: HLREG0 (Highlander Control 0 register)       0x08012FFF
+       Transmit CRC:                                  enabled
+       Receive CRC Strip:                             enabled
+       Jumbo Frames:                                  enabled
+       Pad Short Frames:                              enabled
+       Loopback:                                      disabled
+0x00000: CTRL        (Device Control)                 0x00000000
+0x00008: STATUS      (Device Status)                  0x00080004
+0x00018: CTRL_EXT    (Extended Device Control)        0x10010000
+0x00020: ESDP        (Extended SDP Control)           0x00000000
+0x00028: EODSDP      (Extended OD SDP Control)        0x00000000
+0x00200: LEDCTL      (LED Control)                    0x4F844140
+0x00048: FRTIMER     (Free Running Timer)             0x68F33F4A
+0x0004C: TCPTIMER    (TCP Timer)                      0x00000000
+0x10010: EEC         (EEPROM/Flash Control)           0x047FBF00
+0x10014: EERD        (EEPROM Read)                    0x00000000
+0x1001C: FLA         (Flash Access)                   0x00005048
+0x10110: EEMNGCTL    (Manageability EEPROM Control)   0x800008FD
+0x10114: EEMNGDATA   (Manageability EEPROM R/W Data)  0x30350000
+0x10118: FLMNGCTL    (Manageability Flash Control)    0x8017FC00
+0x1011C: FLMNGDATA   (Manageability Flash Read Data)  0x00000000
+0x10120: FLMNGCNT    (Manageability Flash Read Count) 0x00000100
+0x1013C: FLOP        (Flash Opcode)                   0xDEADBEEF
+0x10200: GRC         (General Receive Control)        0x00000000
+0x00800: EICR        (Extended Interrupt Cause)       0x00000000
+0x00808: EICS        (Extended Interrupt Cause Set)   0x00000000
+0x00880: EIMS        (Extended Interr. Mask Set/Read) 0xD199FFFF
+0x00888: EIMC        (Extended Interrupt Mask Clear)  0xD199FFFF
+0x00810: EIAC        (Extended Interrupt Auto Clear)  0x4000FFFF
+0x00890: EIAM        (Extended Interr. Auto Mask EN)  0x0000FFFF
+0x00820: EITR0       (Extended Interrupt Throttle 0)  0x00000028
+0x00900: IVAR0       (Interrupt Vector Allocation 0)  0x81818080
+0x00000: MSIXT       (MSI-X Table)                    0x00000000
+0x11068: PBACL       (MSI-X PBA Clear)                0x00000000
+0x00898: GPIE        (General Purpose Interrupt EN)   0xC0000030
+0x03008: PFCTOP      (Priority Flow Ctrl Type Opcode) 0x01018808
+0x03200: FCCTV0      (Flow Ctrl Tx Timer Value 0)     0xFFFFFFFF
+0x03204: FCCTV1      (Flow Ctrl Tx Timer Value 1)     0xFFFFFFFF
+0x03208: FCCTV2      (Flow Ctrl Tx Timer Value 2)     0xFFFFFFFF
+0x0320C: FCCTV3      (Flow Ctrl Tx Timer Value 3)     0xFFFFFFFF
+0x03220: FCRTL0      (Flow Ctrl Rx Threshold low 0)   0x80001400
+0x03228: FCRTL1      (Flow Ctrl Rx Threshold low 1)   0x00000000
+0x03230: FCRTL2      (Flow Ctrl Rx Threshold low 2)   0x00000000
+0x03238: FCRTL3      (Flow Ctrl Rx Threshold low 3)   0x00000000
+0x03240: FCRTL4      (Flow Ctrl Rx Threshold low 4)   0x00000000
+0x03248: FCRTL5      (Flow Ctrl Rx Threshold low 5)   0x00000000
+0x03250: FCRTL6      (Flow Ctrl Rx Threshold low 6)   0x00000000
+0x03258: FCRTL7      (Flow Ctrl Rx Threshold low 7)   0x00000000
+0x03260: FCRTH0      (Flow Ctrl Rx Threshold High 0)  0x8004A800
+0x03268: FCRTH1      (Flow Ctrl Rx Threshold High 1)  0x8007A000
+0x03270: FCRTH2      (Flow Ctrl Rx Threshold High 2)  0x8007A000
+0x03278: FCRTH3      (Flow Ctrl Rx Threshold High 3)  0x8007A000
+0x03280: FCRTH4      (Flow Ctrl Rx Threshold High 4)  0x8007A000
+0x03288: FCRTH5      (Flow Ctrl Rx Threshold High 5)  0x8007A000
+0x03290: FCRTH6      (Flow Ctrl Rx Threshold High 6)  0x8007A000
+0x03298: FCRTH7      (Flow Ctrl Rx Threshold High 7)  0x8007A000
+0x032A0: FCRTV       (Flow Control Refresh Threshold) 0x00007FFF
+0x0CE00: TFCS        (Transmit Flow Control Status)   0x000000FF
+0x01000: RDBAL00     (Rx Desc Base Addr Low 00)       0xCA82A000
+0x01040: RDBAL01     (Rx Desc Base Addr Low 01)       0xCA82C000
+0x01080: RDBAL02     (Rx Desc Base Addr Low 02)       0xCA82E000
+0x010C0: RDBAL03     (Rx Desc Base Addr Low 03)       0xCA830000
+0x01100: RDBAL04     (Rx Desc Base Addr Low 04)       0xCA832000
+0x01140: RDBAL05     (Rx Desc Base Addr Low 05)       0xCA834000
+0x01180: RDBAL06     (Rx Desc Base Addr Low 06)       0xCA836000
+0x011C0: RDBAL07     (Rx Desc Base Addr Low 07)       0xCA838000
+0x01200: RDBAL08     (Rx Desc Base Addr Low 08)       0xCA83A000
+0x01240: RDBAL09     (Rx Desc Base Addr Low 09)       0xCA83C000
+0x01280: RDBAL10     (Rx Desc Base Addr Low 10)       0xCA83E000
+0x012C0: RDBAL11     (Rx Desc Base Addr Low 11)       0xCA840000
+0x01300: RDBAL12     (Rx Desc Base Addr Low 12)       0xCA842000
+0x01340: RDBAL13     (Rx Desc Base Addr Low 13)       0xCA844000
+0x01380: RDBAL14     (Rx Desc Base Addr Low 14)       0xCA846000
+0x013C0: RDBAL15     (Rx Desc Base Addr Low 15)       0xCA848000
+0x01400: RDBAL16     (Rx Desc Base Addr Low 16)       0xCA84A000
+0x01440: RDBAL17     (Rx Desc Base Addr Low 17)       0xCA84C000
+0x01480: RDBAL18     (Rx Desc Base Addr Low 18)       0xCA84E000
+0x014C0: RDBAL19     (Rx Desc Base Addr Low 19)       0xCA850000
+0x01500: RDBAL20     (Rx Desc Base Addr Low 20)       0xCA852000
+0x01540: RDBAL21     (Rx Desc Base Addr Low 21)       0xCA854000
+0x01580: RDBAL22     (Rx Desc Base Addr Low 22)       0xCA856000
+0x015C0: RDBAL23     (Rx Desc Base Addr Low 23)       0xCA858000
+0x01600: RDBAL24     (Rx Desc Base Addr Low 24)       0x00000000
+0x01640: RDBAL25     (Rx Desc Base Addr Low 25)       0x00000000
+0x01680: RDBAL26     (Rx Desc Base Addr Low 26)       0x00000000
+0x016C0: RDBAL27     (Rx Desc Base Addr Low 27)       0x00000000
+0x01700: RDBAL28     (Rx Desc Base Addr Low 28)       0x00000000
+0x01740: RDBAL29     (Rx Desc Base Addr Low 29)       0x00000000
+0x01780: RDBAL30     (Rx Desc Base Addr Low 30)       0x00000000
+0x017C0: RDBAL31     (Rx Desc Base Addr Low 31)       0x00000000
+0x01800: RDBAL32     (Rx Desc Base Addr Low 32)       0x00000000
+0x01840: RDBAL33     (Rx Desc Base Addr Low 33)       0x00000000
+0x01880: RDBAL34     (Rx Desc Base Addr Low 34)       0x00000000
+0x018C0: RDBAL35     (Rx Desc Base Addr Low 35)       0x00000000
+0x01900: RDBAL36     (Rx Desc Base Addr Low 36)       0x00000000
+0x01940: RDBAL37     (Rx Desc Base Addr Low 37)       0x00000000
+0x01980: RDBAL38     (Rx Desc Base Addr Low 38)       0x00000000
+0x019C0: RDBAL39     (Rx Desc Base Addr Low 39)       0x00000000
+0x01A00: RDBAL40     (Rx Desc Base Addr Low 40)       0x00000000
+0x01A40: RDBAL41     (Rx Desc Base Addr Low 41)       0x00000000
+0x01A80: RDBAL42     (Rx Desc Base Addr Low 42)       0x00000000
+0x01AC0: RDBAL43     (Rx Desc Base Addr Low 43)       0x00000000
+0x01B00: RDBAL44     (Rx Desc Base Addr Low 44)       0x00000000
+0x01B40: RDBAL45     (Rx Desc Base Addr Low 45)       0x00000000
+0x01B80: RDBAL46     (Rx Desc Base Addr Low 46)       0x00000000
+0x01BC0: RDBAL47     (Rx Desc Base Addr Low 47)       0x00000000
+0x01C00: RDBAL48     (Rx Desc Base Addr Low 48)       0x00000000
+0x01C40: RDBAL49     (Rx Desc Base Addr Low 49)       0x00000000
+0x01C80: RDBAL50     (Rx Desc Base Addr Low 50)       0x00000000
+0x01CC0: RDBAL51     (Rx Desc Base Addr Low 51)       0x00000000
+0x01D00: RDBAL52     (Rx Desc Base Addr Low 52)       0x00000000
+0x01D40: RDBAL53     (Rx Desc Base Addr Low 53)       0x00000000
+0x01D80: RDBAL54     (Rx Desc Base Addr Low 54)       0x00000000
+0x01DC0: RDBAL55     (Rx Desc Base Addr Low 55)       0x00000000
+0x01E00: RDBAL56     (Rx Desc Base Addr Low 56)       0x00000000
+0x01E40: RDBAL57     (Rx Desc Base Addr Low 57)       0x00000000
+0x01E80: RDBAL58     (Rx Desc Base Addr Low 58)       0x00000000
+0x01EC0: RDBAL59     (Rx Desc Base Addr Low 59)       0x00000000
+0x01F00: RDBAL60     (Rx Desc Base Addr Low 60)       0x00000000
+0x01F40: RDBAL61     (Rx Desc Base Addr Low 61)       0x00000000
+0x01F80: RDBAL62     (Rx Desc Base Addr Low 62)       0x00000000
+0x01FC0: RDBAL63     (Rx Desc Base Addr Low 63)       0x00000000
+0x01004: RDBAH00     (Rx Desc Base Addr High 00)      0x00000002
+0x01044: RDBAH01     (Rx Desc Base Addr High 01)      0x00000002
+0x01084: RDBAH02     (Rx Desc Base Addr High 02)      0x00000002
+0x010C4: RDBAH03     (Rx Desc Base Addr High 03)      0x00000002
+0x01104: RDBAH04     (Rx Desc Base Addr High 04)      0x00000002
+0x01144: RDBAH05     (Rx Desc Base Addr High 05)      0x00000002
+0x01184: RDBAH06     (Rx Desc Base Addr High 06)      0x00000002
+0x011C4: RDBAH07     (Rx Desc Base Addr High 07)      0x00000002
+0x01204: RDBAH08     (Rx Desc Base Addr High 08)      0x00000002
+0x01244: RDBAH09     (Rx Desc Base Addr High 09)      0x00000002
+0x01284: RDBAH10     (Rx Desc Base Addr High 10)      0x00000002
+0x012C4: RDBAH11     (Rx Desc Base Addr High 11)      0x00000002
+0x01304: RDBAH12     (Rx Desc Base Addr High 12)      0x00000002
+0x01344: RDBAH13     (Rx Desc Base Addr High 13)      0x00000002
+0x01384: RDBAH14     (Rx Desc Base Addr High 14)      0x00000002
+0x013C4: RDBAH15     (Rx Desc Base Addr High 15)      0x00000002
+0x01404: RDBAH16     (Rx Desc Base Addr High 16)      0x00000002
+0x01444: RDBAH17     (Rx Desc Base Addr High 17)      0x00000002
+0x01484: RDBAH18     (Rx Desc Base Addr High 18)      0x00000002
+0x014C4: RDBAH19     (Rx Desc Base Addr High 19)      0x00000002
+0x01504: RDBAH20     (Rx Desc Base Addr High 20)      0x00000002
+0x01544: RDBAH21     (Rx Desc Base Addr High 21)      0x00000002
+0x01584: RDBAH22     (Rx Desc Base Addr High 22)      0x00000002
+0x015C4: RDBAH23     (Rx Desc Base Addr High 23)      0x00000002
+0x01604: RDBAH24     (Rx Desc Base Addr High 24)      0x00000000
+0x01644: RDBAH25     (Rx Desc Base Addr High 25)      0x00000000
+0x01684: RDBAH26     (Rx Desc Base Addr High 26)      0x00000000
+0x016C4: RDBAH27     (Rx Desc Base Addr High 27)      0x00000000
+0x01704: RDBAH28     (Rx Desc Base Addr High 28)      0x00000000
+0x01744: RDBAH29     (Rx Desc Base Addr High 29)      0x00000000
+0x01784: RDBAH30     (Rx Desc Base Addr High 30)      0x00000000
+0x017C4: RDBAH31     (Rx Desc Base Addr High 31)      0x00000000
+0x01804: RDBAH32     (Rx Desc Base Addr High 32)      0x00000000
+0x01844: RDBAH33     (Rx Desc Base Addr High 33)      0x00000000
+0x01884: RDBAH34     (Rx Desc Base Addr High 34)      0x00000000
+0x018C4: RDBAH35     (Rx Desc Base Addr High 35)      0x00000000
+0x01904: RDBAH36     (Rx Desc Base Addr High 36)      0x00000000
+0x01944: RDBAH37     (Rx Desc Base Addr High 37)      0x00000000
+0x01984: RDBAH38     (Rx Desc Base Addr High 38)      0x00000000
+0x019C4: RDBAH39     (Rx Desc Base Addr High 39)      0x00000000
+0x01A04: RDBAH40     (Rx Desc Base Addr High 40)      0x00000000
+0x01A44: RDBAH41     (Rx Desc Base Addr High 41)      0x00000000
+0x01A84: RDBAH42     (Rx Desc Base Addr High 42)      0x00000000
+0x01AC4: RDBAH43     (Rx Desc Base Addr High 43)      0x00000000
+0x01B04: RDBAH44     (Rx Desc Base Addr High 44)      0x00000000
+0x01B44: RDBAH45     (Rx Desc Base Addr High 45)      0x00000000
+0x01B84: RDBAH46     (Rx Desc Base Addr High 46)      0x00000000
+0x01BC4: RDBAH47     (Rx Desc Base Addr High 47)      0x00000000
+0x01C04: RDBAH48     (Rx Desc Base Addr High 48)      0x00000000
+0x01C44: RDBAH49     (Rx Desc Base Addr High 49)      0x00000000
+0x01C84: RDBAH50     (Rx Desc Base Addr High 50)      0x00000000
+0x01CC4: RDBAH51     (Rx Desc Base Addr High 51)      0x00000000
+0x01D04: RDBAH52     (Rx Desc Base Addr High 52)      0x00000000
+0x01D44: RDBAH53     (Rx Desc Base Addr High 53)      0x00000000
+0x01D84: RDBAH54     (Rx Desc Base Addr High 54)      0x00000000
+0x01DC4: RDBAH55     (Rx Desc Base Addr High 55)      0x00000000
+0x01E04: RDBAH56     (Rx Desc Base Addr High 56)      0x00000000
+0x01E44: RDBAH57     (Rx Desc Base Addr High 57)      0x00000000
+0x01E84: RDBAH58     (Rx Desc Base Addr High 58)      0x00000000
+0x01EC4: RDBAH59     (Rx Desc Base Addr High 59)      0x00000000
+0x01F04: RDBAH60     (Rx Desc Base Addr High 60)      0x00000000
+0x01F44: RDBAH61     (Rx Desc Base Addr High 61)      0x00000000
+0x01F84: RDBAH62     (Rx Desc Base Addr High 62)      0x00000000
+0x01FC4: RDBAH63     (Rx Desc Base Addr High 63)      0x00000000
+0x01008: RDLEN00     (Receive Descriptor Length 00)   0x00002000
+0x01048: RDLEN01     (Receive Descriptor Length 01)   0x00002000
+0x01088: RDLEN02     (Receive Descriptor Length 02)   0x00002000
+0x010C8: RDLEN03     (Receive Descriptor Length 03)   0x00002000
+0x01108: RDLEN04     (Receive Descriptor Length 04)   0x00002000
+0x01148: RDLEN05     (Receive Descriptor Length 05)   0x00002000
+0x01188: RDLEN06     (Receive Descriptor Length 06)   0x00002000
+0x011C8: RDLEN07     (Receive Descriptor Length 07)   0x00002000
+0x01208: RDLEN08     (Receive Descriptor Length 08)   0x00002000
+0x01248: RDLEN09     (Receive Descriptor Length 09)   0x00002000
+0x01288: RDLEN10     (Receive Descriptor Length 10)   0x00002000
+0x012C8: RDLEN11     (Receive Descriptor Length 11)   0x00002000
+0x01308: RDLEN12     (Receive Descriptor Length 12)   0x00002000
+0x01348: RDLEN13     (Receive Descriptor Length 13)   0x00002000
+0x01388: RDLEN14     (Receive Descriptor Length 14)   0x00002000
+0x013C8: RDLEN15     (Receive Descriptor Length 15)   0x00002000
+0x01408: RDLEN16     (Receive Descriptor Length 16)   0x00002000
+0x01448: RDLEN17     (Receive Descriptor Length 17)   0x00002000
+0x01488: RDLEN18     (Receive Descriptor Length 18)   0x00002000
+0x014C8: RDLEN19     (Receive Descriptor Length 19)   0x00002000
+0x01508: RDLEN20     (Receive Descriptor Length 20)   0x00002000
+0x01548: RDLEN21     (Receive Descriptor Length 21)   0x00002000
+0x01588: RDLEN22     (Receive Descriptor Length 22)   0x00002000
+0x015C8: RDLEN23     (Receive Descriptor Length 23)   0x00002000
+0x01608: RDLEN24     (Receive Descriptor Length 24)   0x00000000
+0x01648: RDLEN25     (Receive Descriptor Length 25)   0x00000000
+0x01688: RDLEN26     (Receive Descriptor Length 26)   0x00000000
+0x016C8: RDLEN27     (Receive Descriptor Length 27)   0x00000000
+0x01708: RDLEN28     (Receive Descriptor Length 28)   0x00000000
+0x01748: RDLEN29     (Receive Descriptor Length 29)   0x00000000
+0x01788: RDLEN30     (Receive Descriptor Length 30)   0x00000000
+0x017C8: RDLEN31     (Receive Descriptor Length 31)   0x00000000
+0x01808: RDLEN32     (Receive Descriptor Length 32)   0x00000000
+0x01848: RDLEN33     (Receive Descriptor Length 33)   0x00000000
+0x01888: RDLEN34     (Receive Descriptor Length 34)   0x00000000
+0x018C8: RDLEN35     (Receive Descriptor Length 35)   0x00000000
+0x01908: RDLEN36     (Receive Descriptor Length 36)   0x00000000
+0x01948: RDLEN37     (Receive Descriptor Length 37)   0x00000000
+0x01988: RDLEN38     (Receive Descriptor Length 38)   0x00000000
+0x019C8: RDLEN39     (Receive Descriptor Length 39)   0x00000000
+0x01A08: RDLEN40     (Receive Descriptor Length 40)   0x00000000
+0x01A48: RDLEN41     (Receive Descriptor Length 41)   0x00000000
+0x01A88: RDLEN42     (Receive Descriptor Length 42)   0x00000000
+0x01AC8: RDLEN43     (Receive Descriptor Length 43)   0x00000000
+0x01B08: RDLEN44     (Receive Descriptor Length 44)   0x00000000
+0x01B48: RDLEN45     (Receive Descriptor Length 45)   0x00000000
+0x01B88: RDLEN46     (Receive Descriptor Length 46)   0x00000000
+0x01BC8: RDLEN47     (Receive Descriptor Length 47)   0x00000000
+0x01C08: RDLEN48     (Receive Descriptor Length 48)   0x00000000
+0x01C48: RDLEN49     (Receive Descriptor Length 49)   0x00000000
+0x01C88: RDLEN50     (Receive Descriptor Length 50)   0x00000000
+0x01CC8: RDLEN51     (Receive Descriptor Length 51)   0x00000000
+0x01D08: RDLEN52     (Receive Descriptor Length 52)   0x00000000
+0x01D48: RDLEN53     (Receive Descriptor Length 53)   0x00000000
+0x01D88: RDLEN54     (Receive Descriptor Length 54)   0x00000000
+0x01DC8: RDLEN55     (Receive Descriptor Length 55)   0x00000000
+0x01E08: RDLEN56     (Receive Descriptor Length 56)   0x00000000
+0x01E48: RDLEN57     (Receive Descriptor Length 57)   0x00000000
+0x01E88: RDLEN58     (Receive Descriptor Length 58)   0x00000000
+0x01EC8: RDLEN59     (Receive Descriptor Length 59)   0x00000000
+0x01F08: RDLEN60     (Receive Descriptor Length 60)   0x00000000
+0x01F48: RDLEN61     (Receive Descriptor Length 61)   0x00000000
+0x01F88: RDLEN62     (Receive Descriptor Length 62)   0x00000000
+0x01FC8: RDLEN63     (Receive Descriptor Length 63)   0x00000000
+0x01010: RDH00       (Receive Descriptor Head 00)     0x00000000
+0x01050: RDH01       (Receive Descriptor Head 01)     0x00000000
+0x01090: RDH02       (Receive Descriptor Head 02)     0x00000053
+0x010D0: RDH03       (Receive Descriptor Head 03)     0x00000000
+0x01110: RDH04       (Receive Descriptor Head 04)     0x00000000
+0x01150: RDH05       (Receive Descriptor Head 05)     0x00000000
+0x01190: RDH06       (Receive Descriptor Head 06)     0x00000000
+0x011D0: RDH07       (Receive Descriptor Head 07)     0x00000000
+0x01210: RDH08       (Receive Descriptor Head 08)     0x00000000
+0x01250: RDH09       (Receive Descriptor Head 09)     0x00000000
+0x01290: RDH10       (Receive Descriptor Head 10)     0x00000000
+0x012D0: RDH11       (Receive Descriptor Head 11)     0x00000000
+0x01310: RDH12       (Receive Descriptor Head 12)     0x00000000
+0x01350: RDH13       (Receive Descriptor Head 13)     0x00000000
+0x01390: RDH14       (Receive Descriptor Head 14)     0x00000000
+0x013D0: RDH15       (Receive Descriptor Head 15)     0x00000050
+0x01410: RDH16       (Receive Descriptor Head 16)     0x00000000
+0x01450: RDH17       (Receive Descriptor Head 17)     0x00000000
+0x01490: RDH18       (Receive Descriptor Head 18)     0x00000000
+0x014D0: RDH19       (Receive Descriptor Head 19)     0x00000001
+0x01510: RDH20       (Receive Descriptor Head 20)     0x00000000
+0x01550: RDH21       (Receive Descriptor Head 21)     0x00000000
+0x01590: RDH22       (Receive Descriptor Head 22)     0x00000000
+0x015D0: RDH23       (Receive Descriptor Head 23)     0x00000000
+0x01610: RDH24       (Receive Descriptor Head 24)     0x00000000
+0x01650: RDH25       (Receive Descriptor Head 25)     0x00000000
+0x01690: RDH26       (Receive Descriptor Head 26)     0x00000000
+0x016D0: RDH27       (Receive Descriptor Head 27)     0x00000000
+0x01710: RDH28       (Receive Descriptor Head 28)     0x00000000
+0x01750: RDH29       (Receive Descriptor Head 29)     0x00000000
+0x01790: RDH30       (Receive Descriptor Head 30)     0x00000000
+0x017D0: RDH31       (Receive Descriptor Head 31)     0x00000000
+0x01810: RDH32       (Receive Descriptor Head 32)     0x00000000
+0x01850: RDH33       (Receive Descriptor Head 33)     0x00000000
+0x01890: RDH34       (Receive Descriptor Head 34)     0x00000000
+0x018D0: RDH35       (Receive Descriptor Head 35)     0x00000000
+0x01910: RDH36       (Receive Descriptor Head 36)     0x00000000
+0x01950: RDH37       (Receive Descriptor Head 37)     0x00000000
+0x01990: RDH38       (Receive Descriptor Head 38)     0x00000000
+0x019D0: RDH39       (Receive Descriptor Head 39)     0x00000000
+0x01A10: RDH40       (Receive Descriptor Head 40)     0x00000000
+0x01A50: RDH41       (Receive Descriptor Head 41)     0x00000000
+0x01A90: RDH42       (Receive Descriptor Head 42)     0x00000000
+0x01AD0: RDH43       (Receive Descriptor Head 43)     0x00000000
+0x01B10: RDH44       (Receive Descriptor Head 44)     0x00000000
+0x01B50: RDH45       (Receive Descriptor Head 45)     0x00000000
+0x01B90: RDH46       (Receive Descriptor Head 46)     0x00000000
+0x01BD0: RDH47       (Receive Descriptor Head 47)     0x00000000
+0x01C10: RDH48       (Receive Descriptor Head 48)     0x00000000
+0x01C50: RDH49       (Receive Descriptor Head 49)     0x00000000
+0x01C90: RDH50       (Receive Descriptor Head 50)     0x00000000
+0x01CD0: RDH51       (Receive Descriptor Head 51)     0x00000000
+0x01D10: RDH52       (Receive Descriptor Head 52)     0x00000000
+0x01D50: RDH53       (Receive Descriptor Head 53)     0x00000000
+0x01D90: RDH54       (Receive Descriptor Head 54)     0x00000000
+0x01DD0: RDH55       (Receive Descriptor Head 55)     0x00000000
+0x01E10: RDH56       (Receive Descriptor Head 56)     0x00000000
+0x01E50: RDH57       (Receive Descriptor Head 57)     0x00000000
+0x01E90: RDH58       (Receive Descriptor Head 58)     0x00000000
+0x01ED0: RDH59       (Receive Descriptor Head 59)     0x00000000
+0x01F10: RDH60       (Receive Descriptor Head 60)     0x00000000
+0x01F50: RDH61       (Receive Descriptor Head 61)     0x00000000
+0x01F90: RDH62       (Receive Descriptor Head 62)     0x00000000
+0x01FD0: RDH63       (Receive Descriptor Head 63)     0x00000000
+0x01018: RDT00       (Receive Descriptor Tail 00)     0x000001FF
+0x01058: RDT01       (Receive Descriptor Tail 01)     0x000001FF
+0x01098: RDT02       (Receive Descriptor Tail 02)     0x0000004F
+0x010D8: RDT03       (Receive Descriptor Tail 03)     0x000001FF
+0x01118: RDT04       (Receive Descriptor Tail 04)     0x000001FF
+0x01158: RDT05       (Receive Descriptor Tail 05)     0x000001FF
+0x01198: RDT06       (Receive Descriptor Tail 06)     0x000001FF
+0x011D8: RDT07       (Receive Descriptor Tail 07)     0x000001FF
+0x01218: RDT08       (Receive Descriptor Tail 08)     0x000001FF
+0x01258: RDT09       (Receive Descriptor Tail 09)     0x000001FF
+0x01298: RDT10       (Receive Descriptor Tail 10)     0x000001FF
+0x012D8: RDT11       (Receive Descriptor Tail 11)     0x000001FF
+0x01318: RDT12       (Receive Descriptor Tail 12)     0x000001FF
+0x01358: RDT13       (Receive Descriptor Tail 13)     0x000001FF
+0x01398: RDT14       (Receive Descriptor Tail 14)     0x000001FF
+0x013D8: RDT15       (Receive Descriptor Tail 15)     0x0000004F
+0x01418: RDT16       (Receive Descriptor Tail 16)     0x000001FF
+0x01458: RDT17       (Receive Descriptor Tail 17)     0x000001FF
+0x01498: RDT18       (Receive Descriptor Tail 18)     0x000001FF
+0x014D8: RDT19       (Receive Descriptor Tail 19)     0x000001FF
+0x01518: RDT20       (Receive Descriptor Tail 20)     0x000001FF
+0x01558: RDT21       (Receive Descriptor Tail 21)     0x000001FF
+0x01598: RDT22       (Receive Descriptor Tail 22)     0x000001FF
+0x015D8: RDT23       (Receive Descriptor Tail 23)     0x000001FF
+0x01618: RDT24       (Receive Descriptor Tail 24)     0x00000000
+0x01658: RDT25       (Receive Descriptor Tail 25)     0x00000000
+0x01698: RDT26       (Receive Descriptor Tail 26)     0x00000000
+0x016D8: RDT27       (Receive Descriptor Tail 27)     0x00000000
+0x01718: RDT28       (Receive Descriptor Tail 28)     0x00000000
+0x01758: RDT29       (Receive Descriptor Tail 29)     0x00000000
+0x01798: RDT30       (Receive Descriptor Tail 30)     0x00000000
+0x017D8: RDT31       (Receive Descriptor Tail 31)     0x00000000
+0x01818: RDT32       (Receive Descriptor Tail 32)     0x00000000
+0x01858: RDT33       (Receive Descriptor Tail 33)     0x00000000
+0x01898: RDT34       (Receive Descriptor Tail 34)     0x00000000
+0x018D8: RDT35       (Receive Descriptor Tail 35)     0x00000000
+0x01918: RDT36       (Receive Descriptor Tail 36)     0x00000000
+0x01958: RDT37       (Receive Descriptor Tail 37)     0x00000000
+0x01998: RDT38       (Receive Descriptor Tail 38)     0x00000000
+0x019D8: RDT39       (Receive Descriptor Tail 39)     0x00000000
+0x01A18: RDT40       (Receive Descriptor Tail 40)     0x00000000
+0x01A58: RDT41       (Receive Descriptor Tail 41)     0x00000000
+0x01A98: RDT42       (Receive Descriptor Tail 42)     0x00000000
+0x01AD8: RDT43       (Receive Descriptor Tail 43)     0x00000000
+0x01B18: RDT44       (Receive Descriptor Tail 44)     0x00000000
+0x01B58: RDT45       (Receive Descriptor Tail 45)     0x00000000
+0x01B98: RDT46       (Receive Descriptor Tail 46)     0x00000000
+0x01BD8: RDT47       (Receive Descriptor Tail 47)     0x00000000
+0x01C18: RDT48       (Receive Descriptor Tail 48)     0x00000000
+0x01C58: RDT49       (Receive Descriptor Tail 49)     0x00000000
+0x01C98: RDT50       (Receive Descriptor Tail 50)     0x00000000
+0x01CD8: RDT51       (Receive Descriptor Tail 51)     0x00000000
+0x01D18: RDT52       (Receive Descriptor Tail 52)     0x00000000
+0x01D58: RDT53       (Receive Descriptor Tail 53)     0x00000000
+0x01D98: RDT54       (Receive Descriptor Tail 54)     0x00000000
+0x01DD8: RDT55       (Receive Descriptor Tail 55)     0x00000000
+0x01E18: RDT56       (Receive Descriptor Tail 56)     0x00000000
+0x01E58: RDT57       (Receive Descriptor Tail 57)     0x00000000
+0x01E98: RDT58       (Receive Descriptor Tail 58)     0x00000000
+0x01ED8: RDT59       (Receive Descriptor Tail 59)     0x00000000
+0x01F18: RDT60       (Receive Descriptor Tail 60)     0x00000000
+0x01F58: RDT61       (Receive Descriptor Tail 61)     0x00000000
+0x01F98: RDT62       (Receive Descriptor Tail 62)     0x00000000
+0x01FD8: RDT63       (Receive Descriptor Tail 63)     0x00000000
+0x01028: RXDCTL00    (Receive Descriptor Control 00)  0x42008600
+0x01068: RXDCTL01    (Receive Descriptor Control 01)  0x42008600
+0x010A8: RXDCTL02    (Receive Descriptor Control 02)  0x42008600
+0x010E8: RXDCTL03    (Receive Descriptor Control 03)  0x42008600
+0x01128: RXDCTL04    (Receive Descriptor Control 04)  0x42008600
+0x01168: RXDCTL05    (Receive Descriptor Control 05)  0x42008600
+0x011A8: RXDCTL06    (Receive Descriptor Control 06)  0x42008600
+0x011E8: RXDCTL07    (Receive Descriptor Control 07)  0x42008600
+0x01228: RXDCTL08    (Receive Descriptor Control 08)  0x42008600
+0x01268: RXDCTL09    (Receive Descriptor Control 09)  0x42008600
+0x012A8: RXDCTL10    (Receive Descriptor Control 10)  0x42008600
+0x012E8: RXDCTL11    (Receive Descriptor Control 11)  0x42008600
+0x01328: RXDCTL12    (Receive Descriptor Control 12)  0x42008600
+0x01368: RXDCTL13    (Receive Descriptor Control 13)  0x42008600
+0x013A8: RXDCTL14    (Receive Descriptor Control 14)  0x42008600
+0x013E8: RXDCTL15    (Receive Descriptor Control 15)  0x42008600
+0x01428: RXDCTL16    (Receive Descriptor Control 16)  0x42008600
+0x01468: RXDCTL17    (Receive Descriptor Control 17)  0x42008600
+0x014A8: RXDCTL18    (Receive Descriptor Control 18)  0x42008600
+0x014E8: RXDCTL19    (Receive Descriptor Control 19)  0x42008600
+0x01528: RXDCTL20    (Receive Descriptor Control 20)  0x42008600
+0x01568: RXDCTL21    (Receive Descriptor Control 21)  0x42008600
+0x015A8: RXDCTL22    (Receive Descriptor Control 22)  0x42008600
+0x015E8: RXDCTL23    (Receive Descriptor Control 23)  0x42008600
+0x01628: RXDCTL24    (Receive Descriptor Control 24)  0x00000000
+0x01668: RXDCTL25    (Receive Descriptor Control 25)  0x00000000
+0x016A8: RXDCTL26    (Receive Descriptor Control 26)  0x00000000
+0x016E8: RXDCTL27    (Receive Descriptor Control 27)  0x00000000
+0x01728: RXDCTL28    (Receive Descriptor Control 28)  0x00000000
+0x01768: RXDCTL29    (Receive Descriptor Control 29)  0x00000000
+0x017A8: RXDCTL30    (Receive Descriptor Control 30)  0x00000000
+0x017E8: RXDCTL31    (Receive Descriptor Control 31)  0x00000000
+0x01828: RXDCTL32    (Receive Descriptor Control 32)  0x00000000
+0x01868: RXDCTL33    (Receive Descriptor Control 33)  0x00000000
+0x018A8: RXDCTL34    (Receive Descriptor Control 34)  0x00000000
+0x018E8: RXDCTL35    (Receive Descriptor Control 35)  0x00000000
+0x01928: RXDCTL36    (Receive Descriptor Control 36)  0x00000000
+0x01968: RXDCTL37    (Receive Descriptor Control 37)  0x00000000
+0x019A8: RXDCTL38    (Receive Descriptor Control 38)  0x00000000
+0x019E8: RXDCTL39    (Receive Descriptor Control 39)  0x00000000
+0x01A28: RXDCTL40    (Receive Descriptor Control 40)  0x00000000
+0x01A68: RXDCTL41    (Receive Descriptor Control 41)  0x00000000
+0x01AA8: RXDCTL42    (Receive Descriptor Control 42)  0x00000000
+0x01AE8: RXDCTL43    (Receive Descriptor Control 43)  0x00000000
+0x01B28: RXDCTL44    (Receive Descriptor Control 44)  0x00000000
+0x01B68: RXDCTL45    (Receive Descriptor Control 45)  0x00000000
+0x01BA8: RXDCTL46    (Receive Descriptor Control 46)  0x00000000
+0x01BE8: RXDCTL47    (Receive Descriptor Control 47)  0x00000000
+0x01C28: RXDCTL48    (Receive Descriptor Control 48)  0x00000000
+0x01C68: RXDCTL49    (Receive Descriptor Control 49)  0x00000000
+0x01CA8: RXDCTL50    (Receive Descriptor Control 50)  0x00000000
+0x01CE8: RXDCTL51    (Receive Descriptor Control 51)  0x00000000
+0x01D28: RXDCTL52    (Receive Descriptor Control 52)  0x00000000
+0x01D68: RXDCTL53    (Receive Descriptor Control 53)  0x00000000
+0x01DA8: RXDCTL54    (Receive Descriptor Control 54)  0x00000000
+0x01DE8: RXDCTL55    (Receive Descriptor Control 55)  0x00000000
+0x01E28: RXDCTL56    (Receive Descriptor Control 56)  0x00000000
+0x01E68: RXDCTL57    (Receive Descriptor Control 57)  0x00000000
+0x01EA8: RXDCTL58    (Receive Descriptor Control 58)  0x00000000
+0x01EE8: RXDCTL59    (Receive Descriptor Control 59)  0x00000000
+0x01F28: RXDCTL60    (Receive Descriptor Control 60)  0x00000000
+0x01F68: RXDCTL61    (Receive Descriptor Control 61)  0x00000000
+0x01FA8: RXDCTL62    (Receive Descriptor Control 62)  0x00000000
+0x01FE8: RXDCTL63    (Receive Descriptor Control 63)  0x00000000
+0x02100: SRRCTL00    (Split and Replic Rx Control 00) 0x02000402
+0x02104: SRRCTL01    (Split and Replic Rx Control 01) 0x02000402
+0x02108: SRRCTL02    (Split and Replic Rx Control 02) 0x02000402
+0x0210C: SRRCTL03    (Split and Replic Rx Control 03) 0x02000402
+0x02110: SRRCTL04    (Split and Replic Rx Control 04) 0x02000402
+0x02114: SRRCTL05    (Split and Replic Rx Control 05) 0x02000402
+0x02118: SRRCTL06    (Split and Replic Rx Control 06) 0x02000402
+0x0211C: SRRCTL07    (Split and Replic Rx Control 07) 0x02000402
+0x02120: SRRCTL08    (Split and Replic Rx Control 08) 0x02000402
+0x02124: SRRCTL09    (Split and Replic Rx Control 09) 0x02000402
+0x02128: SRRCTL10    (Split and Replic Rx Control 10) 0x02000402
+0x0212C: SRRCTL11    (Split and Replic Rx Control 11) 0x02000402
+0x02130: SRRCTL12    (Split and Replic Rx Control 12) 0x02000402
+0x02134: SRRCTL13    (Split and Replic Rx Control 13) 0x02000402
+0x02138: SRRCTL14    (Split and Replic Rx Control 14) 0x02000402
+0x0213C: SRRCTL15    (Split and Replic Rx Control 15) 0x02000402
+0x02200: DCA_RXCTRL00 (Rx DCA Control 00)             0x0000A200
+0x02204: DCA_RXCTRL01 (Rx DCA Control 01)             0x0000A200
+0x02208: DCA_RXCTRL02 (Rx DCA Control 02)             0x0000A200
+0x0220C: DCA_RXCTRL03 (Rx DCA Control 03)             0x0000A200
+0x02210: DCA_RXCTRL04 (Rx DCA Control 04)             0x0000A200
+0x02214: DCA_RXCTRL05 (Rx DCA Control 05)             0x0000A200
+0x02218: DCA_RXCTRL06 (Rx DCA Control 06)             0x0000A200
+0x0221C: DCA_RXCTRL07 (Rx DCA Control 07)             0x0000A200
+0x02220: DCA_RXCTRL08 (Rx DCA Control 08)             0x0000A200
+0x02224: DCA_RXCTRL09 (Rx DCA Control 09)             0x0000A200
+0x02228: DCA_RXCTRL10 (Rx DCA Control 10)             0x0000A200
+0x0222C: DCA_RXCTRL11 (Rx DCA Control 11)             0x0000A200
+0x02230: DCA_RXCTRL12 (Rx DCA Control 12)             0x0000A200
+0x02234: DCA_RXCTRL13 (Rx DCA Control 13)             0x0000A200
+0x02238: DCA_RXCTRL14 (Rx DCA Control 14)             0x0000A200
+0x0223C: DCA_RXCTRL15 (Rx DCA Control 15)             0x0000A200
+0x02F00: RDRXCTL     (Receive DMA Control)            0x0600880A
+0x03C00: RXPBSIZE0   (Receive Packet Buffer Size 0)   0x00050000
+0x03C04: RXPBSIZE1   (Receive Packet Buffer Size 1)   0x00000000
+0x03C08: RXPBSIZE2   (Receive Packet Buffer Size 2)   0x00000000
+0x03C0C: RXPBSIZE3   (Receive Packet Buffer Size 3)   0x00000000
+0x03C10: RXPBSIZE4   (Receive Packet Buffer Size 4)   0x00000000
+0x03C14: RXPBSIZE5   (Receive Packet Buffer Size 5)   0x00000000
+0x03C18: RXPBSIZE6   (Receive Packet Buffer Size 6)   0x00000000
+0x03C1C: RXPBSIZE7   (Receive Packet Buffer Size 7)   0x00000000
+0x03000: RXCTRL      (Receive Control)                0x00000001
+0x05000: RXCSUM      (Receive Checksum Control)       0x00002000
+0x05008: RFCTL       (Receive Filter Control)         0x000000E0
+0x05400: RAL00       (Receive Address Low00)          0x63B4699C
+0x05408: RAL01       (Receive Address Low01)          0x00000000
+0x05410: RAL02       (Receive Address Low02)          0x00000000
+0x05418: RAL03       (Receive Address Low03)          0x00000000
+0x05420: RAL04       (Receive Address Low04)          0x00000000
+0x05428: RAL05       (Receive Address Low05)          0x00000000
+0x05430: RAL06       (Receive Address Low06)          0x00000000
+0x05438: RAL07       (Receive Address Low07)          0x00000000
+0x05440: RAL08       (Receive Address Low08)          0x00000000
+0x05448: RAL09       (Receive Address Low09)          0x00000000
+0x05450: RAL10       (Receive Address Low10)          0x00000000
+0x05458: RAL11       (Receive Address Low11)          0x00000000
+0x05460: RAL12       (Receive Address Low12)          0x00000000
+0x05468: RAL13       (Receive Address Low13)          0x00000000
+0x05470: RAL14       (Receive Address Low14)          0x00000000
+0x05478: RAL15       (Receive Address Low15)          0x00000000
+0x05404: RAH00       (Receive Address High 00)        0x8000CA73
+0x0540C: RAH01       (Receive Address High 01)        0x00000000
+0x05414: RAH02       (Receive Address High 02)        0x00000000
+0x0541C: RAH03       (Receive Address High 03)        0x00000000
+0x05424: RAH04       (Receive Address High 04)        0x00000000
+0x0542C: RAH05       (Receive Address High 05)        0x00000000
+0x05434: RAH06       (Receive Address High 06)        0x00000000
+0x0543C: RAH07       (Receive Address High 07)        0x00000000
+0x05444: RAH08       (Receive Address High 08)        0x00000000
+0x0544C: RAH09       (Receive Address High 09)        0x00000000
+0x05454: RAH10       (Receive Address High 10)        0x00000000
+0x0545C: RAH11       (Receive Address High 11)        0x00000000
+0x05464: RAH12       (Receive Address High 12)        0x00000000
+0x0546C: RAH13       (Receive Address High 13)        0x00000000
+0x05474: RAH14       (Receive Address High 14)        0x00000000
+0x0547C: RAH15       (Receive Address High 15)        0x00000000
+0x05480: PSRTYPE     (Packet Split Receive Type)      0x40001330
+0x05090: MCSTCTRL    (Multicast Control)              0x00000004
+0x05818: MRQC        (Multiple Rx Queues Command)     0x00330001
+0x0581C: VMD_CTL     (VMDq Control)                   0x00000000
+0x05A80: IMIR0       (Immediate Interrupt Rx 0)       0x00000000
+0x05A84: IMIR1       (Immediate Interrupt Rx 1)       0x00000000
+0x05A88: IMIR2       (Immediate Interrupt Rx 2)       0x00000000
+0x05A8C: IMIR3       (Immediate Interrupt Rx 3)       0x00000000
+0x05A90: IMIR4       (Immediate Interrupt Rx 4)       0x00000000
+0x05A94: IMIR5       (Immediate Interrupt Rx 5)       0x00000000
+0x05A98: IMIR6       (Immediate Interrupt Rx 6)       0x00000000
+0x05A9C: IMIR7       (Immediate Interrupt Rx 7)       0x00000000
+0x05AA0: IMIREXT0    (Immed. Interr. Rx Extended 0)   0x00000000
+0x05AA4: IMIREXT1    (Immed. Interr. Rx Extended 1)   0x00000000
+0x05AA8: IMIREXT2    (Immed. Interr. Rx Extended 2)   0x00000000
+0x05AAC: IMIREXT3    (Immed. Interr. Rx Extended 3)   0x00000000
+0x05AB0: IMIREXT4    (Immed. Interr. Rx Extended 4)   0x00000000
+0x05AB4: IMIREXT5    (Immed. Interr. Rx Extended 5)   0x00000000
+0x05AB8: IMIREXT6    (Immed. Interr. Rx Extended 6)   0x00000000
+0x05ABC: IMIREXT7    (Immed. Interr. Rx Extended 7)   0x00000000
+0x05AC0: IMIRVP      (Immed. Interr. Rx VLAN Prior.)  0xDEADBEEF
+0x06000: TDBAL00     (Tx Desc Base Addr Low 00)       0x7534C000
+0x06040: TDBAL01     (Tx Desc Base Addr Low 01)       0x78476000
+0x06080: TDBAL02     (Tx Desc Base Addr Low 02)       0x751CA000
+0x060C0: TDBAL03     (Tx Desc Base Addr Low 03)       0x75104000
+0x06100: TDBAL04     (Tx Desc Base Addr Low 04)       0x74B6C000
+0x06140: TDBAL05     (Tx Desc Base Addr Low 05)       0x4CF24000
+0x06180: TDBAL06     (Tx Desc Base Addr Low 06)       0x3A8CA000
+0x061C0: TDBAL07     (Tx Desc Base Addr Low 07)       0x76612000
+0x06200: TDBAL08     (Tx Desc Base Addr Low 08)       0x4D424000
+0x06240: TDBAL09     (Tx Desc Base Addr Low 09)       0x52EF4000
+0x06280: TDBAL10     (Tx Desc Base Addr Low 10)       0x07074000
+0x062C0: TDBAL11     (Tx Desc Base Addr Low 11)       0x7A0AE000
+0x06300: TDBAL12     (Tx Desc Base Addr Low 12)       0xB69DC000
+0x06340: TDBAL13     (Tx Desc Base Addr Low 13)       0x78A0A000
+0x06380: TDBAL14     (Tx Desc Base Addr Low 14)       0x19350000
+0x063C0: TDBAL15     (Tx Desc Base Addr Low 15)       0x28BE4000
+0x06400: TDBAL16     (Tx Desc Base Addr Low 16)       0x77D4C000
+0x06440: TDBAL17     (Tx Desc Base Addr Low 17)       0x081FA000
+0x06480: TDBAL18     (Tx Desc Base Addr Low 18)       0x4D722000
+0x064C0: TDBAL19     (Tx Desc Base Addr Low 19)       0x0559C000
+0x06500: TDBAL20     (Tx Desc Base Addr Low 20)       0x753FE000
+0x06540: TDBAL21     (Tx Desc Base Addr Low 21)       0x4A022000
+0x06580: TDBAL22     (Tx Desc Base Addr Low 22)       0xCA826000
+0x065C0: TDBAL23     (Tx Desc Base Addr Low 23)       0xCA828000
+0x06600: TDBAL24     (Tx Desc Base Addr Low 24)       0x00000000
+0x06640: TDBAL25     (Tx Desc Base Addr Low 25)       0x00000000
+0x06680: TDBAL26     (Tx Desc Base Addr Low 26)       0x00000000
+0x066C0: TDBAL27     (Tx Desc Base Addr Low 27)       0x00000000
+0x06700: TDBAL28     (Tx Desc Base Addr Low 28)       0x00000000
+0x06740: TDBAL29     (Tx Desc Base Addr Low 29)       0x00000000
+0x06780: TDBAL30     (Tx Desc Base Addr Low 30)       0x00000000
+0x067C0: TDBAL31     (Tx Desc Base Addr Low 31)       0x00000000
+0x06004: TDBAH00     (Tx Desc Base Addr High 00)      0x00000001
+0x06044: TDBAH01     (Tx Desc Base Addr High 01)      0x00000001
+0x06084: TDBAH02     (Tx Desc Base Addr High 02)      0x00000001
+0x060C4: TDBAH03     (Tx Desc Base Addr High 03)      0x00000001
+0x06104: TDBAH04     (Tx Desc Base Addr High 04)      0x00000001
+0x06144: TDBAH05     (Tx Desc Base Addr High 05)      0x00000001
+0x06184: TDBAH06     (Tx Desc Base Addr High 06)      0x00000001
+0x061C4: TDBAH07     (Tx Desc Base Addr High 07)      0x00000001
+0x06204: TDBAH08     (Tx Desc Base Addr High 08)      0x00000001
+0x06244: TDBAH09     (Tx Desc Base Addr High 09)      0x00000001
+0x06284: TDBAH10     (Tx Desc Base Addr High 10)      0x00000001
+0x062C4: TDBAH11     (Tx Desc Base Addr High 11)      0x00000001
+0x06304: TDBAH12     (Tx Desc Base Addr High 12)      0x00000001
+0x06344: TDBAH13     (Tx Desc Base Addr High 13)      0x00000001
+0x06384: TDBAH14     (Tx Desc Base Addr High 14)      0x00000001
+0x063C4: TDBAH15     (Tx Desc Base Addr High 15)      0x00000001
+0x06404: TDBAH16     (Tx Desc Base Addr High 16)      0x00000001
+0x06444: TDBAH17     (Tx Desc Base Addr High 17)      0x00000001
+0x06484: TDBAH18     (Tx Desc Base Addr High 18)      0x00000001
+0x064C4: TDBAH19     (Tx Desc Base Addr High 19)      0x00000001
+0x06504: TDBAH20     (Tx Desc Base Addr High 20)      0x00000001
+0x06544: TDBAH21     (Tx Desc Base Addr High 21)      0x00000001
+0x06584: TDBAH22     (Tx Desc Base Addr High 22)      0x00000002
+0x065C4: TDBAH23     (Tx Desc Base Addr High 23)      0x00000002
+0x06604: TDBAH24     (Tx Desc Base Addr High 24)      0x00000000
+0x06644: TDBAH25     (Tx Desc Base Addr High 25)      0x00000000
+0x06684: TDBAH26     (Tx Desc Base Addr High 26)      0x00000000
+0x066C4: TDBAH27     (Tx Desc Base Addr High 27)      0x00000000
+0x06704: TDBAH28     (Tx Desc Base Addr High 28)      0x00000000
+0x06744: TDBAH29     (Tx Desc Base Addr High 29)      0x00000000
+0x06784: TDBAH30     (Tx Desc Base Addr High 30)      0x00000000
+0x067C4: TDBAH31     (Tx Desc Base Addr High 31)      0x00000000
+0x06008: TDLEN00     (Tx Descriptor Length 00)        0x00002000
+0x06048: TDLEN01     (Tx Descriptor Length 01)        0x00002000
+0x06088: TDLEN02     (Tx Descriptor Length 02)        0x00002000
+0x060C8: TDLEN03     (Tx Descriptor Length 03)        0x00002000
+0x06108: TDLEN04     (Tx Descriptor Length 04)        0x00002000
+0x06148: TDLEN05     (Tx Descriptor Length 05)        0x00002000
+0x06188: TDLEN06     (Tx Descriptor Length 06)        0x00002000
+0x061C8: TDLEN07     (Tx Descriptor Length 07)        0x00002000
+0x06208: TDLEN08     (Tx Descriptor Length 08)        0x00002000
+0x06248: TDLEN09     (Tx Descriptor Length 09)        0x00002000
+0x06288: TDLEN10     (Tx Descriptor Length 10)        0x00002000
+0x062C8: TDLEN11     (Tx Descriptor Length 11)        0x00002000
+0x06308: TDLEN12     (Tx Descriptor Length 12)        0x00002000
+0x06348: TDLEN13     (Tx Descriptor Length 13)        0x00002000
+0x06388: TDLEN14     (Tx Descriptor Length 14)        0x00002000
+0x063C8: TDLEN15     (Tx Descriptor Length 15)        0x00002000
+0x06408: TDLEN16     (Tx Descriptor Length 16)        0x00002000
+0x06448: TDLEN17     (Tx Descriptor Length 17)        0x00002000
+0x06488: TDLEN18     (Tx Descriptor Length 18)        0x00002000
+0x064C8: TDLEN19     (Tx Descriptor Length 19)        0x00002000
+0x06508: TDLEN20     (Tx Descriptor Length 20)        0x00002000
+0x06548: TDLEN21     (Tx Descriptor Length 21)        0x00002000
+0x06588: TDLEN22     (Tx Descriptor Length 22)        0x00002000
+0x065C8: TDLEN23     (Tx Descriptor Length 23)        0x00002000
+0x06608: TDLEN24     (Tx Descriptor Length 24)        0x00000000
+0x06648: TDLEN25     (Tx Descriptor Length 25)        0x00000000
+0x06688: TDLEN26     (Tx Descriptor Length 26)        0x00000000
+0x066C8: TDLEN27     (Tx Descriptor Length 27)        0x00000000
+0x06708: TDLEN28     (Tx Descriptor Length 28)        0x00000000
+0x06748: TDLEN29     (Tx Descriptor Length 29)        0x00000000
+0x06788: TDLEN30     (Tx Descriptor Length 30)        0x00000000
+0x067C8: TDLEN31     (Tx Descriptor Length 31)        0x00000000
+0x06010: TDH00       (Transmit Descriptor Head 00)    0x00000003
+0x06050: TDH01       (Transmit Descriptor Head 01)    0x0000000F
+0x06090: TDH02       (Transmit Descriptor Head 02)    0x00000024
+0x060D0: TDH03       (Transmit Descriptor Head 03)    0x00000026
+0x06110: TDH04       (Transmit Descriptor Head 04)    0x00000055
+0x06150: TDH05       (Transmit Descriptor Head 05)    0x0000000C
+0x06190: TDH06       (Transmit Descriptor Head 06)    0x00000025
+0x061D0: TDH07       (Transmit Descriptor Head 07)    0x00000031
+0x06210: TDH08       (Transmit Descriptor Head 08)    0x00000000
+0x06250: TDH09       (Transmit Descriptor Head 09)    0x00000000
+0x06290: TDH10       (Transmit Descriptor Head 10)    0x00000000
+0x062D0: TDH11       (Transmit Descriptor Head 11)    0x00000000
+0x06310: TDH12       (Transmit Descriptor Head 12)    0x00000000
+0x06350: TDH13       (Transmit Descriptor Head 13)    0x00000000
+0x06390: TDH14       (Transmit Descriptor Head 14)    0x00000000
+0x063D0: TDH15       (Transmit Descriptor Head 15)    0x00000000
+0x06410: TDH16       (Transmit Descriptor Head 16)    0x00000014
+0x06450: TDH17       (Transmit Descriptor Head 17)    0x00000044
+0x06490: TDH18       (Transmit Descriptor Head 18)    0x0000000C
+0x064D0: TDH19       (Transmit Descriptor Head 19)    0x00000029
+0x06510: TDH20       (Transmit Descriptor Head 20)    0x00000000
+0x06550: TDH21       (Transmit Descriptor Head 21)    0x00000000
+0x06590: TDH22       (Transmit Descriptor Head 22)    0x00000002
+0x065D0: TDH23       (Transmit Descriptor Head 23)    0x0000001C
+0x06610: TDH24       (Transmit Descriptor Head 24)    0x00000000
+0x06650: TDH25       (Transmit Descriptor Head 25)    0x00000000
+0x06690: TDH26       (Transmit Descriptor Head 26)    0x00000000
+0x066D0: TDH27       (Transmit Descriptor Head 27)    0x00000000
+0x06710: TDH28       (Transmit Descriptor Head 28)    0x00000000
+0x06750: TDH29       (Transmit Descriptor Head 29)    0x00000000
+0x06790: TDH30       (Transmit Descriptor Head 30)    0x00000000
+0x067D0: TDH31       (Transmit Descriptor Head 31)    0x00000000
+0x06018: TDT00       (Transmit Descriptor Tail 00)    0x00000003
+0x06058: TDT01       (Transmit Descriptor Tail 01)    0x0000000F
+0x06098: TDT02       (Transmit Descriptor Tail 02)    0x00000024
+0x060D8: TDT03       (Transmit Descriptor Tail 03)    0x00000026
+0x06118: TDT04       (Transmit Descriptor Tail 04)    0x00000055
+0x06158: TDT05       (Transmit Descriptor Tail 05)    0x0000000C
+0x06198: TDT06       (Transmit Descriptor Tail 06)    0x00000025
+0x061D8: TDT07       (Transmit Descriptor Tail 07)    0x00000031
+0x06218: TDT08       (Transmit Descriptor Tail 08)    0x00000000
+0x06258: TDT09       (Transmit Descriptor Tail 09)    0x00000000
+0x06298: TDT10       (Transmit Descriptor Tail 10)    0x00000000
+0x062D8: TDT11       (Transmit Descriptor Tail 11)    0x00000000
+0x06318: TDT12       (Transmit Descriptor Tail 12)    0x00000000
+0x06358: TDT13       (Transmit Descriptor Tail 13)    0x00000000
+0x06398: TDT14       (Transmit Descriptor Tail 14)    0x00000000
+0x063D8: TDT15       (Transmit Descriptor Tail 15)    0x00000000
+0x06418: TDT16       (Transmit Descriptor Tail 16)    0x00000014
+0x06458: TDT17       (Transmit Descriptor Tail 17)    0x00000044
+0x06498: TDT18       (Transmit Descriptor Tail 18)    0x0000000C
+0x064D8: TDT19       (Transmit Descriptor Tail 19)    0x00000029
+0x06518: TDT20       (Transmit Descriptor Tail 20)    0x00000000
+0x06558: TDT21       (Transmit Descriptor Tail 21)    0x00000000
+0x06598: TDT22       (Transmit Descriptor Tail 22)    0x00000002
+0x065D8: TDT23       (Transmit Descriptor Tail 23)    0x0000001C
+0x06618: TDT24       (Transmit Descriptor Tail 24)    0x00000000
+0x06658: TDT25       (Transmit Descriptor Tail 25)    0x00000000
+0x06698: TDT26       (Transmit Descriptor Tail 26)    0x00000000
+0x066D8: TDT27       (Transmit Descriptor Tail 27)    0x00000000
+0x06718: TDT28       (Transmit Descriptor Tail 28)    0x00000000
+0x06758: TDT29       (Transmit Descriptor Tail 29)    0x00000000
+0x06798: TDT30       (Transmit Descriptor Tail 30)    0x00000000
+0x067D8: TDT31       (Transmit Descriptor Tail 31)    0x00000000
+0x06028: TXDCTL00    (Tx Descriptor Control 00)       0x02080120
+0x06068: TXDCTL01    (Tx Descriptor Control 01)       0x02080120
+0x060A8: TXDCTL02    (Tx Descriptor Control 02)       0x02080120
+0x060E8: TXDCTL03    (Tx Descriptor Control 03)       0x02080120
+0x06128: TXDCTL04    (Tx Descriptor Control 04)       0x02080120
+0x06168: TXDCTL05    (Tx Descriptor Control 05)       0x02080120
+0x061A8: TXDCTL06    (Tx Descriptor Control 06)       0x02080120
+0x061E8: TXDCTL07    (Tx Descriptor Control 07)       0x02080120
+0x06228: TXDCTL08    (Tx Descriptor Control 08)       0x02080120
+0x06268: TXDCTL09    (Tx Descriptor Control 09)       0x02080120
+0x062A8: TXDCTL10    (Tx Descriptor Control 10)       0x02080120
+0x062E8: TXDCTL11    (Tx Descriptor Control 11)       0x02080120
+0x06328: TXDCTL12    (Tx Descriptor Control 12)       0x02080120
+0x06368: TXDCTL13    (Tx Descriptor Control 13)       0x02080120
+0x063A8: TXDCTL14    (Tx Descriptor Control 14)       0x02080120
+0x063E8: TXDCTL15    (Tx Descriptor Control 15)       0x02080120
+0x06428: TXDCTL16    (Tx Descriptor Control 16)       0x02080120
+0x06468: TXDCTL17    (Tx Descriptor Control 17)       0x02080120
+0x064A8: TXDCTL18    (Tx Descriptor Control 18)       0x02080120
+0x064E8: TXDCTL19    (Tx Descriptor Control 19)       0x02080120
+0x06528: TXDCTL20    (Tx Descriptor Control 20)       0x02080120
+0x06568: TXDCTL21    (Tx Descriptor Control 21)       0x02080120
+0x065A8: TXDCTL22    (Tx Descriptor Control 22)       0x02080120
+0x065E8: TXDCTL23    (Tx Descriptor Control 23)       0x02080120
+0x06628: TXDCTL24    (Tx Descriptor Control 24)       0x00000000
+0x06668: TXDCTL25    (Tx Descriptor Control 25)       0x00000000
+0x066A8: TXDCTL26    (Tx Descriptor Control 26)       0x00000000
+0x066E8: TXDCTL27    (Tx Descriptor Control 27)       0x00000000
+0x06728: TXDCTL28    (Tx Descriptor Control 28)       0x00000000
+0x06768: TXDCTL29    (Tx Descriptor Control 29)       0x00000000
+0x067A8: TXDCTL30    (Tx Descriptor Control 30)       0x00000000
+0x067E8: TXDCTL31    (Tx Descriptor Control 31)       0x00000000
+0x06038: TDWBAL00    (Tx Desc Compl. WB Addr low 00)  0x00000000
+0x06078: TDWBAL01    (Tx Desc Compl. WB Addr low 01)  0x00000000
+0x060B8: TDWBAL02    (Tx Desc Compl. WB Addr low 02)  0x00000000
+0x060F8: TDWBAL03    (Tx Desc Compl. WB Addr low 03)  0x00000000
+0x06138: TDWBAL04    (Tx Desc Compl. WB Addr low 04)  0x00000000
+0x06178: TDWBAL05    (Tx Desc Compl. WB Addr low 05)  0x00000000
+0x061B8: TDWBAL06    (Tx Desc Compl. WB Addr low 06)  0x00000000
+0x061F8: TDWBAL07    (Tx Desc Compl. WB Addr low 07)  0x00000000
+0x06238: TDWBAL08    (Tx Desc Compl. WB Addr low 08)  0x00000000
+0x06278: TDWBAL09    (Tx Desc Compl. WB Addr low 09)  0x00000000
+0x062B8: TDWBAL10    (Tx Desc Compl. WB Addr low 10)  0x00000000
+0x062F8: TDWBAL11    (Tx Desc Compl. WB Addr low 11)  0x00000000
+0x06338: TDWBAL12    (Tx Desc Compl. WB Addr low 12)  0x00000000
+0x06378: TDWBAL13    (Tx Desc Compl. WB Addr low 13)  0x00000000
+0x063B8: TDWBAL14    (Tx Desc Compl. WB Addr low 14)  0x00000000
+0x063F8: TDWBAL15    (Tx Desc Compl. WB Addr low 15)  0x00000000
+0x06438: TDWBAL16    (Tx Desc Compl. WB Addr low 16)  0x00000000
+0x06478: TDWBAL17    (Tx Desc Compl. WB Addr low 17)  0x00000000
+0x064B8: TDWBAL18    (Tx Desc Compl. WB Addr low 18)  0x00000000
+0x064F8: TDWBAL19    (Tx Desc Compl. WB Addr low 19)  0x00000000
+0x06538: TDWBAL20    (Tx Desc Compl. WB Addr low 20)  0x00000000
+0x06578: TDWBAL21    (Tx Desc Compl. WB Addr low 21)  0x00000000
+0x065B8: TDWBAL22    (Tx Desc Compl. WB Addr low 22)  0x00000000
+0x065F8: TDWBAL23    (Tx Desc Compl. WB Addr low 23)  0x00000000
+0x06638: TDWBAL24    (Tx Desc Compl. WB Addr low 24)  0x00000000
+0x06678: TDWBAL25    (Tx Desc Compl. WB Addr low 25)  0x00000000
+0x066B8: TDWBAL26    (Tx Desc Compl. WB Addr low 26)  0x00000000
+0x066F8: TDWBAL27    (Tx Desc Compl. WB Addr low 27)  0x00000000
+0x06738: TDWBAL28    (Tx Desc Compl. WB Addr low 28)  0x00000000
+0x06778: TDWBAL29    (Tx Desc Compl. WB Addr low 29)  0x00000000
+0x067B8: TDWBAL30    (Tx Desc Compl. WB Addr low 30)  0x00000000
+0x067F8: TDWBAL31    (Tx Desc Compl. WB Addr low 31)  0x00000000
+0x0603C: TDWBAH00    (Tx Desc Compl. WB Addr High 00) 0x00000000
+0x0607C: TDWBAH01    (Tx Desc Compl. WB Addr High 01) 0x00000000
+0x060BC: TDWBAH02    (Tx Desc Compl. WB Addr High 02) 0x00000000
+0x060FC: TDWBAH03    (Tx Desc Compl. WB Addr High 03) 0x00000000
+0x0613C: TDWBAH04    (Tx Desc Compl. WB Addr High 04) 0x00000000
+0x0617C: TDWBAH05    (Tx Desc Compl. WB Addr High 05) 0x00000000
+0x061BC: TDWBAH06    (Tx Desc Compl. WB Addr High 06) 0x00000000
+0x061FC: TDWBAH07    (Tx Desc Compl. WB Addr High 07) 0x00000000
+0x0623C: TDWBAH08    (Tx Desc Compl. WB Addr High 08) 0x00000000
+0x0627C: TDWBAH09    (Tx Desc Compl. WB Addr High 09) 0x00000000
+0x062BC: TDWBAH10    (Tx Desc Compl. WB Addr High 10) 0x00000000
+0x062FC: TDWBAH11    (Tx Desc Compl. WB Addr High 11) 0x00000000
+0x0633C: TDWBAH12    (Tx Desc Compl. WB Addr High 12) 0x00000000
+0x0637C: TDWBAH13    (Tx Desc Compl. WB Addr High 13) 0x00000000
+0x063BC: TDWBAH14    (Tx Desc Compl. WB Addr High 14) 0x00000000
+0x063FC: TDWBAH15    (Tx Desc Compl. WB Addr High 15) 0x00000000
+0x0643C: TDWBAH16    (Tx Desc Compl. WB Addr High 16) 0x00000000
+0x0647C: TDWBAH17    (Tx Desc Compl. WB Addr High 17) 0x00000000
+0x064BC: TDWBAH18    (Tx Desc Compl. WB Addr High 18) 0x00000000
+0x064FC: TDWBAH19    (Tx Desc Compl. WB Addr High 19) 0x00000000
+0x0653C: TDWBAH20    (Tx Desc Compl. WB Addr High 20) 0x00000000
+0x0657C: TDWBAH21    (Tx Desc Compl. WB Addr High 21) 0x00000000
+0x065BC: TDWBAH22    (Tx Desc Compl. WB Addr High 22) 0x00000000
+0x065FC: TDWBAH23    (Tx Desc Compl. WB Addr High 23) 0x00000000
+0x0663C: TDWBAH24    (Tx Desc Compl. WB Addr High 24) 0x00000000
+0x0667C: TDWBAH25    (Tx Desc Compl. WB Addr High 25) 0x00000000
+0x066BC: TDWBAH26    (Tx Desc Compl. WB Addr High 26) 0x00000000
+0x066FC: TDWBAH27    (Tx Desc Compl. WB Addr High 27) 0x00000000
+0x0673C: TDWBAH28    (Tx Desc Compl. WB Addr High 28) 0x00000000
+0x0677C: TDWBAH29    (Tx Desc Compl. WB Addr High 29) 0x00000000
+0x067BC: TDWBAH30    (Tx Desc Compl. WB Addr High 30) 0x00000000
+0x067FC: TDWBAH31    (Tx Desc Compl. WB Addr High 31) 0x00000000
+0x07E00: DTXCTL      (DMA Tx Control)                 0x00000000
+0x07200: DCA_TXCTRL00 (Tx DCA Control 00)             0x00000000
+0x07204: DCA_TXCTRL01 (Tx DCA Control 01)             0x00000000
+0x07208: DCA_TXCTRL02 (Tx DCA Control 02)             0x00000000
+0x0720C: DCA_TXCTRL03 (Tx DCA Control 03)             0x00002200
+0x07210: DCA_TXCTRL04 (Tx DCA Control 04)             0x00000000
+0x07214: DCA_TXCTRL05 (Tx DCA Control 05)             0x00000000
+0x07218: DCA_TXCTRL06 (Tx DCA Control 06)             0x00000000
+0x0721C: DCA_TXCTRL07 (Tx DCA Control 07)             0x00000000
+0x07220: DCA_TXCTRL08 (Tx DCA Control 08)             0x00000000
+0x07224: DCA_TXCTRL09 (Tx DCA Control 09)             0x00000000
+0x07228: DCA_TXCTRL10 (Tx DCA Control 10)             0x00000000
+0x0722C: DCA_TXCTRL11 (Tx DCA Control 11)             0x00000000
+0x07230: DCA_TXCTRL12 (Tx DCA Control 12)             0x00000000
+0x07234: DCA_TXCTRL13 (Tx DCA Control 13)             0x00030008
+0x07238: DCA_TXCTRL14 (Tx DCA Control 14)             0x00000000
+0x0723C: DCA_TXCTRL15 (Tx DCA Control 15)             0x00000000
+0x0CC00: TXPBSIZE0   (Transmit Packet Buffer Size 0)  0x00028000
+0x0CC04: TXPBSIZE1   (Transmit Packet Buffer Size 1)  0x00000000
+0x0CC08: TXPBSIZE2   (Transmit Packet Buffer Size 2)  0x00000000
+0x0CC0C: TXPBSIZE3   (Transmit Packet Buffer Size 3)  0x00000000
+0x0CC10: TXPBSIZE4   (Transmit Packet Buffer Size 4)  0x00000000
+0x0CC14: TXPBSIZE5   (Transmit Packet Buffer Size 5)  0x00000000
+0x0CC18: TXPBSIZE6   (Transmit Packet Buffer Size 6)  0x00000000
+0x0CC1C: TXPBSIZE7   (Transmit Packet Buffer Size 7)  0x00000000
+0x0CD10: MNGTXMAP    (Manageability Tx TC Mapping)    0x00000000
+0x05800: WUC         (Wake up Control)                0x00000010
+0x05808: WUFC        (Wake Up Filter Control)         0x00000000
+0x05810: WUS         (Wake Up Status)                 0x00000000
+0x05838: IPAV        (IP Address Valid)               0x00000000
+0x05840: IP4AT       (IPv4 Address Table)             0x00000000
+0x05880: IP6AT       (IPv6 Address Table)             0x00000000
+0x05900: WUPL        (Wake Up Packet Length)          0x00000000
+0x05A00: WUPM        (Wake Up Packet Memory)          0x00003333
+0x09000: FHFT        (Flexible Host Filter Table)     0x00000000
+0x04900: RTTDCS      (Tx Descr Plane Ctrl&Status)     0x00C00000
+0x0CD00: RTTPCS      (Tx Pkt Plane Ctrl&Status)       0x89000000
+0x02430: RTRPCS      (Rx Packet Plane Ctrl&Status)    0x60000000
+0x02140: RTRPT4C0    (Rx Packet Plane T4 Config 0)    0x00000000
+0x02144: RTRPT4C1    (Rx Packet Plane T4 Config 1)    0x00000000
+0x02148: RTRPT4C2    (Rx Packet Plane T4 Config 2)    0x00000000
+0x0214C: RTRPT4C3    (Rx Packet Plane T4 Config 3)    0x00000000
+0x02150: RTRPT4C4    (Rx Packet Plane T4 Config 4)    0x00000000
+0x02154: RTRPT4C5    (Rx Packet Plane T4 Config 5)    0x00000000
+0x02158: RTRPT4C6    (Rx Packet Plane T4 Config 6)    0x00000000
+0x0215C: RTRPT4C7    (Rx Packet Plane T4 Config 7)    0x00000000
+0x02160: RTRPT4S0    (Rx Packet Plane T4 Status 0)    0x00000000
+0x02164: RTRPT4S1    (Rx Packet Plane T4 Status 1)    0x00000000
+0x02168: RTRPT4S2    (Rx Packet Plane T4 Status 2)    0x00000000
+0x0216C: RTRPT4S3    (Rx Packet Plane T4 Status 3)    0x00000000
+0x02170: RTRPT4S4    (Rx Packet Plane T4 Status 4)    0x00000000
+0x02174: RTRPT4S5    (Rx Packet Plane T4 Status 5)    0x00000000
+0x02178: RTRPT4S6    (Rx Packet Plane T4 Status 6)    0x00000000
+0x0217C: RTRPT4S7    (Rx Packet Plane T4 Status 7)    0x00000000
+0x04910: RTTDT2C0    (Tx Descr Plane T2 Config 0)     0x00000000
+0x04914: RTTDT2C1    (Tx Descr Plane T2 Config 1)     0x00000000
+0x04918: RTTDT2C2    (Tx Descr Plane T2 Config 2)     0x00000000
+0x0491C: RTTDT2C3    (Tx Descr Plane T2 Config 3)     0x00000000
+0x04920: RTTDT2C4    (Tx Descr Plane T2 Config 4)     0x00000000
+0x04924: RTTDT2C5    (Tx Descr Plane T2 Config 5)     0x00000000
+0x04928: RTTDT2C6    (Tx Descr Plane T2 Config 6)     0x00000000
+0x0492C: RTTDT2C7    (Tx Descr Plane T2 Config 7)     0x00000000
+0x0CD20: RTTPT2C0    (Tx Packet Plane T2 Config 0)    0x00000000
+0x0CD24: RTTPT2C1    (Tx Packet Plane T2 Config 1)    0x00000000
+0x0CD28: RTTPT2C2    (Tx Packet Plane T2 Config 2)    0x00000000
+0x0CD2C: RTTPT2C3    (Tx Packet Plane T2 Config 3)    0x00000000
+0x0CD30: RTTPT2C4    (Tx Packet Plane T2 Config 4)    0x00000000
+0x0CD34: RTTPT2C5    (Tx Packet Plane T2 Config 5)    0x00000000
+0x0CD38: RTTPT2C6    (Tx Packet Plane T2 Config 6)    0x00000000
+0x0CD3C: RTTPT2C7    (Tx Packet Plane T2 Config 7)    0x00000000
+0x03020: RTRUP2TC    (Rx User Prio to Traffic Classes)0x00000000
+0x0C800: RTTUP2TC    (Tx User Prio to Traffic Classes)0x00000000
+0x082E0: TXLLQ0      (Strict Low Lat Tx Queues 0)     0x00000000
+0x082E4: TXLLQ1      (Strict Low Lat Tx Queues 1)     0x00000000
+0x082E8: TXLLQ2      (Strict Low Lat Tx Queues 2)     0x00000000
+0x082EC: TXLLQ3      (Strict Low Lat Tx Queues 3)     0x00000000
+0x04980: RTTQCNRM    (DCB TX QCN Rate Sched MMW)      0x00000000
+0x0498C: RTTQCNRR    (DCB TX QCN Rate Reset)          0x00000000
+0x04A90: RTTQCNTG    (DCB TX QCN Tagging)             0x00000000
+0x04000: crcerrs     (CRC Error Count)                0x00000000
+0x04004: illerrc     (Illegal Byte Error Count)       0x00000000
+0x04008: errbc       (Error Byte Count)               0x00000000
+0x04010: mspdc       (MAC Short Packet Discard Count) 0x00000000
+0x03FA0: mpc0        (Missed Packets Count 0)         0x00000000
+0x03FA4: mpc1        (Missed Packets Count 1)         0x00000000
+0x03FA8: mpc2        (Missed Packets Count 2)         0x00000000
+0x03FAC: mpc3        (Missed Packets Count 3)         0x00000000
+0x03FB0: mpc4        (Missed Packets Count 4)         0x00000000
+0x03FB4: mpc5        (Missed Packets Count 5)         0x00000000
+0x03FB8: mpc6        (Missed Packets Count 6)         0x00000000
+0x03FBC: mpc7        (Missed Packets Count 7)         0x00000000
+0x04034: mlfc        (MAC Local Fault Count)          0x00000000
+0x04038: mrfc        (MAC Remote Fault Count)         0x00000000
+0x04040: rlec        (Receive Length Error Count)     0x00000000
+0x03F60: lxontxc     (Link XON Transmitted Count)     0x00000000
+0x0CF60: lxonrxc     (Link XON Received Count)        0x00000000
+0x03F68: lxofftxc    (Link XOFF Transmitted Count)    0x00000000
+0x0CF68: lxoffrxc    (Link XOFF Received Count)       0x00000000
+0x03F00: pxontxc0    (Priority XON Tx Count 0)        0x00000000
+0x03F04: pxontxc1    (Priority XON Tx Count 1)        0x00000000
+0x03F08: pxontxc2    (Priority XON Tx Count 2)        0x00000000
+0x03F0C: pxontxc3    (Priority XON Tx Count 3)        0x00000000
+0x03F10: pxontxc4    (Priority XON Tx Count 4)        0x00000000
+0x03F14: pxontxc5    (Priority XON Tx Count 5)        0x00000000
+0x03F18: pxontxc6    (Priority XON Tx Count 6)        0x00000000
+0x03F1C: pxontxc7    (Priority XON Tx Count 7)        0x00000000
+0x0CF00: pxonrxc0    (Priority XON Received Count 0)  0x00000000
+0x0CF04: pxonrxc1    (Priority XON Received Count 1)  0x00000000
+0x0CF08: pxonrxc2    (Priority XON Received Count 2)  0x00000000
+0x0CF0C: pxonrxc3    (Priority XON Received Count 3)  0x00000000
+0x0CF10: pxonrxc4    (Priority XON Received Count 4)  0x00000000
+0x0CF14: pxonrxc5    (Priority XON Received Count 5)  0x00000000
+0x0CF18: pxonrxc6    (Priority XON Received Count 6)  0x00000000
+0x0CF1C: pxonrxc7    (Priority XON Received Count 7)  0x00000000
+0x03F20: pxofftxc0   (Priority XOFF Tx Count 0)       0x00000000
+0x03F24: pxofftxc1   (Priority XOFF Tx Count 1)       0x00000000
+0x03F28: pxofftxc2   (Priority XOFF Tx Count 2)       0x00000000
+0x03F2C: pxofftxc3   (Priority XOFF Tx Count 3)       0x00000000
+0x03F30: pxofftxc4   (Priority XOFF Tx Count 4)       0x00000000
+0x03F34: pxofftxc5   (Priority XOFF Tx Count 5)       0x00000000
+0x03F38: pxofftxc6   (Priority XOFF Tx Count 6)       0x00000000
+0x03F3C: pxofftxc7   (Priority XOFF Tx Count 7)       0x00000000
+0x0CF20: pxoffrxc0   (Priority XOFF Received Count 0) 0x00000000
+0x0CF24: pxoffrxc1   (Priority XOFF Received Count 1) 0x00000000
+0x0CF28: pxoffrxc2   (Priority XOFF Received Count 2) 0x00000000
+0x0CF2C: pxoffrxc3   (Priority XOFF Received Count 3) 0x00000000
+0x0CF30: pxoffrxc4   (Priority XOFF Received Count 4) 0x00000000
+0x0CF34: pxoffrxc5   (Priority XOFF Received Count 5) 0x00000000
+0x0CF38: pxoffrxc6   (Priority XOFF Received Count 6) 0x00000000
+0x0CF3C: pxoffrxc7   (Priority XOFF Received Count 7) 0x00000000
+0x0405C: prc64       (Packets Received (64B) Count)   0x00000000
+0x04060: prc127      (Packets Rx (65-127B) Count)     0x00000037
+0x04064: prc255      (Packets Rx (128-255B) Count)    0x0000001C
+0x04068: prc511      (Packets Rx (256-511B) Count)    0x00000050
+0x0406C: prc1023     (Packets Rx (512-1023B) Count)   0x00000001
+0x04070: prc1522     (Packets Rx (1024-Max) Count)    0x00000000
+0x04074: gprc        (Good Packets Received Count)    0x000000A4
+0x04078: bprc        (Broadcast Packets Rx Count)     0x00000050
+0x0407C: mprc        (Multicast Packets Rx Count)     0x00000054
+0x04080: gptc        (Good Packets Transmitted Count) 0x0000015A
+0x04088: gorcl       (Good Octets Rx Count Low)       0x00009994
+0x0408C: gorch       (Good Octets Rx Count High)      0x00000000
+0x04090: gotcl       (Good Octets Tx Count Low)       0x0000E02B
+0x04094: gotch       (Good Octets Tx Count High)      0x00000000
+0x03FC0: rnbc0       (Receive No Buffers Count 0)     0x00000000
+0x03FC4: rnbc1       (Receive No Buffers Count 1)     0x00000000
+0x03FC8: rnbc2       (Receive No Buffers Count 2)     0x00000000
+0x03FCC: rnbc3       (Receive No Buffers Count 3)     0x00000000
+0x03FD0: rnbc4       (Receive No Buffers Count 4)     0x00000000
+0x03FD4: rnbc5       (Receive No Buffers Count 5)     0x00000000
+0x03FD8: rnbc6       (Receive No Buffers Count 6)     0x00000000
+0x03FDC: rnbc7       (Receive No Buffers Count 7)     0x00000000
+0x040A4: ruc         (Receive Undersize count)        0x00000000
+0x040A8: rfc         (Receive Fragment Count)         0x00000000
+0x040AC: roc         (Receive Oversize Count)         0x00000000
+0x040B0: rjc         (Receive Jabber Count)           0x00000000
+0x040B4: mngprc      (Management Packets Rx Count)    0x00000000
+0x040B8: mngpdc      (Management Pkts Dropped Count)  0x00000000
+0x0CF90: mngptc      (Management Packets Tx Count)    0x00000000
+0x040C0: torl        (Total Octets Rx Count Low)      0x0000D7E6
+0x040C4: torh        (Total Octets Rx Count High)     0x00000000
+0x040D0: tpr         (Total Packets Received)         0x00000149
+0x040D4: tpt         (Total Packets Transmitted)      0x00000000
+0x040D8: ptc64       (Packets Tx (64B) Count)         0x00000000
+0x040DC: ptc127      (Packets Tx (65-127B) Count)     0x000000CC
+0x040E0: ptc255      (Packets Tx (128-255B) Count)    0x0000003D
+0x040E4: ptc511      (Packets Tx (256-511B) Count)    0x00000050
+0x040E8: ptc1023     (Packets Tx (512-1023B) Count)   0x00000001
+0x040EC: ptc1522     (Packets Tx (1024-Max) Count)    0x00000000
+0x040F0: mptc        (Multicast Packets Tx Count)     0x0000010A
+0x040F4: bptc        (Broadcast Packets Tx Count)     0x00000050
+0x04120: xec         (XSUM Error Count)               0x00000000
+0x01030: qprc00      (Queue Packets Rx Count 00)      0x000000A4
+0x01070: qprc01      (Queue Packets Rx Count 01)      0x00000000
+0x010B0: qprc02      (Queue Packets Rx Count 02)      0x00000000
+0x010F0: qprc03      (Queue Packets Rx Count 03)      0x00000000
+0x01130: qprc04      (Queue Packets Rx Count 04)      0x00000000
+0x01170: qprc05      (Queue Packets Rx Count 05)      0x00000000
+0x011B0: qprc06      (Queue Packets Rx Count 06)      0x00000000
+0x011F0: qprc07      (Queue Packets Rx Count 07)      0x00000000
+0x01230: qprc08      (Queue Packets Rx Count 08)      0x00000000
+0x01270: qprc09      (Queue Packets Rx Count 09)      0x00000000
+0x012B0: qprc10      (Queue Packets Rx Count 10)      0x00000000
+0x012F0: qprc11      (Queue Packets Rx Count 11)      0x00000000
+0x01330: qprc12      (Queue Packets Rx Count 12)      0x00000000
+0x01370: qprc13      (Queue Packets Rx Count 13)      0x00000000
+0x013B0: qprc14      (Queue Packets Rx Count 14)      0x00000000
+0x013F0: qprc15      (Queue Packets Rx Count 15)      0x00000000
+0x06030: qptc00      (Queue Packets Tx Count 00)      0x0000015A
+0x06070: qptc01      (Queue Packets Tx Count 01)      0x00000000
+0x060B0: qptc02      (Queue Packets Tx Count 02)      0x00000000
+0x060F0: qptc03      (Queue Packets Tx Count 03)      0x00000000
+0x06130: qptc04      (Queue Packets Tx Count 04)      0x00000000
+0x06170: qptc05      (Queue Packets Tx Count 05)      0x00000000
+0x061B0: qptc06      (Queue Packets Tx Count 06)      0x00000000
+0x061F0: qptc07      (Queue Packets Tx Count 07)      0x00000000
+0x06230: qptc08      (Queue Packets Tx Count 08)      0x00000000
+0x06270: qptc09      (Queue Packets Tx Count 09)      0x00000000
+0x062B0: qptc10      (Queue Packets Tx Count 10)      0x00000000
+0x062F0: qptc11      (Queue Packets Tx Count 11)      0x00000000
+0x06330: qptc12      (Queue Packets Tx Count 12)      0x00000000
+0x06370: qptc13      (Queue Packets Tx Count 13)      0x00000000
+0x063B0: qptc14      (Queue Packets Tx Count 14)      0x00000000
+0x063F0: qptc15      (Queue Packets Tx Count 15)      0x00000000
+0x01034: qbrc00      (Queue Bytes Rx Count 00)        0x00009704
+0x01074: qbrc01      (Queue Bytes Rx Count 01)        0x00000000
+0x010B4: qbrc02      (Queue Bytes Rx Count 02)        0x00000000
+0x010F4: qbrc03      (Queue Bytes Rx Count 03)        0x00000000
+0x01134: qbrc04      (Queue Bytes Rx Count 04)        0x00000000
+0x01174: qbrc05      (Queue Bytes Rx Count 05)        0x00000000
+0x011B4: qbrc06      (Queue Bytes Rx Count 06)        0x00000000
+0x011F4: qbrc07      (Queue Bytes Rx Count 07)        0x00000000
+0x01234: qbrc08      (Queue Bytes Rx Count 08)        0x00000000
+0x01274: qbrc09      (Queue Bytes Rx Count 09)        0x00000000
+0x012B4: qbrc10      (Queue Bytes Rx Count 10)        0x00000000
+0x012F4: qbrc11      (Queue Bytes Rx Count 11)        0x00000000
+0x01334: qbrc12      (Queue Bytes Rx Count 12)        0x00000000
+0x01374: qbrc13      (Queue Bytes Rx Count 13)        0x00000000
+0x013B4: qbrc14      (Queue Bytes Rx Count 14)        0x00000000
+0x013F4: qbrc15      (Queue Bytes Rx Count 15)        0x00000000
+0x06034: qbtc00      (Queue Bytes Tx Count 00)        0x0000DAC3
+0x06074: qbtc01      (Queue Bytes Tx Count 01)        0x00000000
+0x060B4: qbtc02      (Queue Bytes Tx Count 02)        0x00000000
+0x060F4: qbtc03      (Queue Bytes Tx Count 03)        0x00000000
+0x06134: qbtc04      (Queue Bytes Tx Count 04)        0x00000000
+0x06174: qbtc05      (Queue Bytes Tx Count 05)        0x00000000
+0x061B4: qbtc06      (Queue Bytes Tx Count 06)        0x00000000
+0x061F4: qbtc07      (Queue Bytes Tx Count 07)        0x00000000
+0x06234: qbtc08      (Queue Bytes Tx Count 08)        0x00000000
+0x06274: qbtc09      (Queue Bytes Tx Count 09)        0x00000000
+0x062B4: qbtc10      (Queue Bytes Tx Count 10)        0x00000000
+0x062F4: qbtc11      (Queue Bytes Tx Count 11)        0x00000000
+0x06334: qbtc12      (Queue Bytes Tx Count 12)        0x00000000
+0x06374: qbtc13      (Queue Bytes Tx Count 13)        0x00000000
+0x063B4: qbtc14      (Queue Bytes Tx Count 14)        0x00000000
+0x063F4: qbtc15      (Queue Bytes Tx Count 15)        0x00000000
+0x04244: HLREG1      (Highlander Status 1)            0x00000001
+0x04248: PAP         (Pause and Pace)                 0x0000FFFF
+0x0424C: MACA        (MDI Auto-Scan Command and Addr) 0x22000000
+0x04250: APAE        (Auto-Scan PHY Address Enable)   0x00000000
+0x04254: ARD         (Auto-Scan Read Data)            0x00000000
+0x04258: AIS         (Auto-Scan Interrupt Status)     0x00000000
+0x0425C: MSCA        (MDI Single Command and Addr)    0x0C070013
+0x04260: MSRWD       (MDI Single Read and Write Data) 0x9D013200
+0x04264: MLADD       (MAC Address Low)                0x00000000
+0x04268: MHADD       (MAC Addr High/Max Frame size)   0x05EE0000
+0x0426C: TREG        (Test Register)                  0x00040000
+0x07C20: TDSTATCTL   (Tx DMA Statistic Control)       0x00000000
+0x07C00: TDSTAT0     (Tx DMA Statistics 0)            0x00000000
+0x07C04: TDSTAT1     (Tx DMA Statistics 1)            0x00000000
+0x07C08: TDSTAT2     (Tx DMA Statistics 2)            0x00000000
+0x07C0C: TDSTAT3     (Tx DMA Statistics 3)            0x00002200
+0x07C10: TDSTAT4     (Tx DMA Statistics 4)            0x00000000
+0x07C14: TDSTAT5     (Tx DMA Statistics 5)            0x00000000
+0x07C18: TDSTAT6     (Tx DMA Statistics 6)            0x00000000
+0x07C1C: TDSTAT7     (Tx DMA Statistics 7)            0x00000000
+0x07F08: TDHMPN      (Tx Desc Handler Mem Page Num)   0x00000000
+0x07F10: TIC_DW0     (Tx Desc Hand. Mem Read Data 0)  0x00000000
+0x07F14: TIC_DW1     (Tx Desc Hand. Mem Read Data 1)  0x00000000
+0x07F18: TIC_DW2     (Tx Desc Hand. Mem Read Data 2)  0x00000000
+0x07F1C: TIC_DW3     (Tx Desc Hand. Mem Read Data 3)  0x00000000
+0x07F20: TDPROBE     (Tx Probe Mode Status)           0x00000000
+0x0C600: TXBUFCTRL   (TX Buffer Access Control)       0x00000000
+0x0C610: TXBUFDATA0  (TX Buffer DATA 0)               0x00000000
+0x0C614: TXBUFDATA1  (TX Buffer DATA 1)               0x00000000
+0x0C618: TXBUFDATA2  (TX Buffer DATA 2)               0x00000000
+0x0C61C: TXBUFDATA3  (TX Buffer DATA 3)               0x00000000
+0x03600: RXBUFCTRL   (RX Buffer Access Control)       0x00000000
+0x03610: RXBUFDATA0  (RX Buffer DATA 0)               0x00000000
+0x03614: RXBUFDATA1  (RX Buffer DATA 1)               0x00000000
+0x03618: RXBUFDATA2  (RX Buffer DATA 2)               0x00000000
+0x0361C: RXBUFDATA3  (RX Buffer DATA 3)               0x00000000
+0x11090: PCIE_DIAG0  (PCIe Diagnostic 0)              0x00000E83
+0x11094: PCIE_DIAG1  (PCIe Diagnostic 1)              0xDEADBEAF
+0x11098: PCIE_DIAG2  (PCIe Diagnostic 2)              0x00000000
+0x1109C: PCIE_DIAG3  (PCIe Diagnostic 3)              0xDEADBEAF
+0x110A0: PCIE_DIAG4  (PCIe Diagnostic 4)              0x00007397
+0x110A4: PCIE_DIAG5  (PCIe Diagnostic 5)              0xDEADBEAF
+0x110A8: PCIE_DIAG6  (PCIe Diagnostic 6)              0x00000000
+0x110AC: PCIE_DIAG7  (PCIe Diagnostic 7)              0xDEADBEAF
+0x050A4: RFVAL       (Receive Filter Validation)      0x00000000
+0x08800: SECTXCTRL   (Security Tx Control)            0x00000001
+0x08804: SECTXSTAT   (Security Tx Status)             0x00000001
+0x08808: SECTXBUFFAF (Security Tx Buffer Almost Full) 0x00000250
+0x08800: SECTXMINIFG (Security Tx Buffer Minimum IFG) 0x00001001
+0x08800: SECRXCTRL   (Security Rx Control)            0x00000001
+0x08800: SECRXSTAT   (Security Rx Status)             0x00000001

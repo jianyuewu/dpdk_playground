@@ -1,0 +1,109 @@
+[13:57:31.275410714] (+?.?????????) lib.eal.thread.lcore.ready: { cpu_id = 0x1, name = "rte-worker-1" }, { lcore_id = 0x1, cpuset = "1" }
+[13:57:31.275453351] (+0.000042637) lib.eal.thread.lcore.ready: { cpu_id = 0x2, name = "rte-worker-2" }, { lcore_id = 0x2, cpuset = "2" }
+[13:57:31.275479360] (+0.000026009) lib.eal.thread.lcore.ready: { cpu_id = 0x3, name = "rte-worker-3" }, { lcore_id = 0x3, cpuset = "3" }
+[13:57:31.275515766] (+0.000036406) lib.eal.thread.lcore.ready: { cpu_id = 0x4, name = "rte-worker-4" }, { lcore_id = 0x4, cpuset = "4" }
+[13:57:31.275523292] (+0.000007526) lib.eal.thread.lcore.ready: { cpu_id = 0x5, name = "rte-worker-5" }, { lcore_id = 0x5, cpuset = "5" }
+[13:57:31.275585696] (+0.000062404) lib.eal.thread.lcore.ready: { cpu_id = 0x6, name = "rte-worker-6" }, { lcore_id = 0x6, cpuset = "6" }
+[13:57:31.275587573] (+0.000001877) lib.eal.thread.lcore.ready: { cpu_id = 0x7, name = "rte-worker-7" }, { lcore_id = 0x7, cpuset = "7" }
+[13:57:31.275616904] (+0.000029331) lib.eal.thread.lcore.ready: { cpu_id = 0x10, name = "rte-worker-16" }, { lcore_id = 0x10, cpuset = "16" }
+[13:57:31.275642559] (+0.000025655) lib.eal.thread.lcore.ready: { cpu_id = 0x11, name = "rte-worker-17" }, { lcore_id = 0x11, cpuset = "17" }
+[13:57:31.275668211] (+0.000025652) lib.eal.thread.lcore.ready: { cpu_id = 0x12, name = "rte-worker-18" }, { lcore_id = 0x12, cpuset = "18" }
+[13:57:31.275692903] (+0.000024692) lib.eal.thread.lcore.ready: { cpu_id = 0x13, name = "rte-worker-19" }, { lcore_id = 0x13, cpuset = "19" }
+[13:57:31.275720262] (+0.000027359) lib.eal.thread.lcore.ready: { cpu_id = 0x14, name = "rte-worker-20" }, { lcore_id = 0x14, cpuset = "20" }
+[13:57:31.275746260] (+0.000025998) lib.eal.thread.lcore.ready: { cpu_id = 0x15, name = "rte-worker-21" }, { lcore_id = 0x15, cpuset = "21" }
+[13:57:31.275768175] (+0.000021915) lib.eal.thread.lcore.ready: { cpu_id = 0x16, name = "rte-worker-22" }, { lcore_id = 0x16, cpuset = "22" }
+[13:57:31.275768634] (+0.000000459) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x1, rc = 0 }
+[13:57:31.275774080] (+0.000005446) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x2, rc = 0 }
+[13:57:31.275779107] (+0.000005027) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x3, rc = 0 }
+[13:57:31.275784213] (+0.000005106) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x4, rc = 0 }
+[13:57:31.275788912] (+0.000004699) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x5, rc = 0 }
+[13:57:31.275790727] (+0.000001815) lib.eal.thread.lcore.ready: { cpu_id = 0x17, name = "rte-worker-23" }, { lcore_id = 0x17, cpuset = "23" }
+[13:57:31.275794304] (+0.000003577) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x6, rc = 0 }
+[13:57:31.275798756] (+0.000004452) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x7, rc = 0 }
+[13:57:31.275805195] (+0.000006439) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x10, rc = 0 }
+[13:57:31.275811410] (+0.000006215) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x11, rc = 0 }
+[13:57:31.275817573] (+0.000006163) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x12, rc = 0 }
+[13:57:31.275823662] (+0.000006089) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x13, rc = 0 }
+[13:57:31.275830025] (+0.000006363) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x14, rc = 0 }
+[13:57:31.275836192] (+0.000006167) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x15, rc = 0 }
+[13:57:31.275842067] (+0.000005875) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x16, rc = 0 }
+[13:57:31.275848203] (+0.000006136) lib.eal.thread.remote.launch: { cpu_id = 0x0, name = "dpdk-test" }, { f = 0x555901DC95D0, arg = 0x0, worker_id = 0x17, rc = 0 }
+[13:57:31.275849657] (+0.000001454) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "rte_services", size = 0x2000, align = 0x40, socket = -1, ptr = 0x17EFFD400 }
+[13:57:31.275849868] (+0.000000211) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "rte_services", size = 0x2000, align = 0x40, socket = -1, ptr = 0x17EFFD400 }
+[13:57:31.275850167] (+0.000000299) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "rte_service_core_states", size = 0x24000, align = 0x40, socket = -1, ptr = 0x17EFD9380 }
+[13:57:31.275850256] (+0.000000089) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "rte_service_core_states", size = 0x24000, align = 0x40, socket = -1, ptr = 0x17EFD9380 }
+[13:57:31.276033465] (+0.000183209) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EFD81C0 }
+[13:57:31.276033607] (+0.000000142) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EFD81C0 }
+[13:57:31.276034176] (+0.000000569) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.276047149] (+0.000012973) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.276073313] (+0.000026164) lib.eal.memzone.reserve: { cpu_id = 0x0, name = "dpdk-test" }, { name = "rte_eth_dev_data", len = 0x30040, socket_id = 0, flags = 0x0, align = 0x40, bound = 0x0, mz = 0x100007000 }
+[13:57:31.276084251] (+0.000010938) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.0", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF9E780 }
+[13:57:31.276084336] (+0.000000085) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.0", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF9E780 }
+[13:57:31.340325723] (+0.064241387) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF9E400 }
+[13:57:31.340325957] (+0.000000234) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF9E400 }
+[13:57:31.340935981] (+0.000610024) lib.eal.intr.register: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 76, handle_fd = 75, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158D8380 }
+[13:57:31.340937365] (+0.000001384) lib.eal.intr.enable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 76, handle_fd = 75, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.341073912] (+0.000136547) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF9D240 }
+[13:57:31.341073999] (+0.000000087) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF9D240 }
+[13:57:31.341074411] (+0.000000412) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.341087554] (+0.000013143) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.341112146] (+0.000024592) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.1", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF938C0 }
+[13:57:31.341112241] (+0.000000095) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.1", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF938C0 }
+[13:57:31.405034446] (+0.063922205) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF93540 }
+[13:57:31.405034516] (+0.000000070) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF93540 }
+[13:57:31.405628841] (+0.000594325) lib.eal.intr.register: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 78, handle_fd = 77, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158DC400 }
+[13:57:31.405629590] (+0.000000749) lib.eal.intr.enable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 78, handle_fd = 77, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.405732602] (+0.000103012) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF92380 }
+[13:57:31.405732642] (+0.000000040) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF92380 }
+[13:57:31.405732940] (+0.000000298) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.405739936] (+0.000006996) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.405759803] (+0.000019867) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.2", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF88A00 }
+[13:57:31.405759877] (+0.000000074) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.2", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF88A00 }
+[13:57:31.469680584] (+0.063920707) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF88680 }
+[13:57:31.469680648] (+0.000000064) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF88680 }
+[13:57:31.470276006] (+0.000595358) lib.eal.intr.register: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 80, handle_fd = 79, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158E0480 }
+[13:57:31.470276694] (+0.000000688) lib.eal.intr.enable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 80, handle_fd = 79, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.470359485] (+0.000082791) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF874C0 }
+[13:57:31.470359550] (+0.000000065) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "UIO_RES", size = 0x1120, align = 0x0, socket = -1, ptr = 0x17EF874C0 }
+[13:57:31.470359821] (+0.000000271) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.470367050] (+0.000007229) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "", size = 0x0, align = 0x0, socket = 0, ptr = 0x0 }
+[13:57:31.470385266] (+0.000018216) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.3", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF7DB40 }
+[13:57:31.470385337] (+0.000000071) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "0000:05:10.3", size = 0x77C8, align = 0x40, socket = -1, ptr = 0x17EF7DB40 }
+[13:57:31.534305662] (+0.063920325) lib.eal.mem.malloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF7D7C0 }
+[13:57:31.534305740] (+0.000000078) lib.eal.mem.zmalloc: { cpu_id = 0x0, name = "dpdk-test" }, { type = "ixgbevf", size = 0x300, align = 0x0, socket = -1, ptr = 0x17EF7D7C0 }
+[13:57:31.534900142] (+0.000594402) lib.eal.intr.register: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 82, handle_fd = 81, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158E4500 }
+[13:57:31.534900891] (+0.000000749) lib.eal.intr.enable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 82, handle_fd = 81, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.543050751] (+0.008149860) lib.eal.memzone.lookup: { cpu_id = 0x0, name = "dpdk-test" }, { name = "rte_timer_mz", memzone = 0x0 }
+[13:57:31.543053110] (+0.000002359) lib.eal.memzone.reserve: { cpu_id = 0x0, name = "dpdk-test" }, { name = "rte_timer_mz", len = 0x181004, socket_id = -1, flags = 0x0, align = 0x40, bound = 0x0, mz = 0x100007048 }
+[13:57:31.543469218] (+0.000416108) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EDFC700 }
+[13:57:31.543497124] (+0.000027906) lib.eal.memzone.free: { cpu_id = 0x0, name = "dpdk-test" }, { name = "rte_timer_mz", addr = 0x17EDFC700, rc = 0 }
+[13:57:31.543501445] (+0.000004321) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EFFD400 }
+[13:57:31.543501805] (+0.000000360) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EFD9380 }
+[13:57:31.607843739] (+0.064341934) lib.eal.intr.disable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 76, handle_fd = 75, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.607848319] (+0.000004580) lib.eal.intr.unregister: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 1, handle_dev_fd = 76, handle_fd = 75, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158D8380 }
+[13:57:31.607848817] (+0.000000498) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.607848841] (+0.000000024) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.607848855] (+0.000000014) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF9E400 }
+[13:57:31.607849476] (+0.000000621) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.607849491] (+0.000000015) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF9E780 }
+[13:57:31.671186333] (+0.063336842) lib.eal.intr.disable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 78, handle_fd = 77, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.671187642] (+0.000001309) lib.eal.intr.unregister: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 1, handle_dev_fd = 78, handle_fd = 77, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158DC400 }
+[13:57:31.671187791] (+0.000000149) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.671187822] (+0.000000031) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.671187842] (+0.000000020) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF93540 }
+[13:57:31.671187972] (+0.000000130) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.671187990] (+0.000000018) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF938C0 }
+[13:57:31.734524701] (+0.063336711) lib.eal.intr.disable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 80, handle_fd = 79, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.734525957] (+0.000001256) lib.eal.intr.unregister: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 1, handle_dev_fd = 80, handle_fd = 79, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158E0480 }
+[13:57:31.734526108] (+0.000000151) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.734526138] (+0.000000030) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.734526155] (+0.000000017) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF88680 }
+[13:57:31.734526405] (+0.000000250) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.734526425] (+0.000000020) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF88A00 }
+[13:57:31.797863711] (+0.063337286) lib.eal.intr.disable: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 0, handle_dev_fd = 82, handle_fd = 81, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0 }
+[13:57:31.797865686] (+0.000001975) lib.eal.intr.unregister: { cpu_id = 0x0, name = "dpdk-test" }, { rc = 1, handle_dev_fd = 82, handle_fd = 81, handle_type = 1, handle_max_intr = 0x0, handle_nb_efd = 0x0, cb = 0x555903320CE3, cb_arg = 0x5559158E4500 }
+[13:57:31.797865990] (+0.000000304) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.797866026] (+0.000000036) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.797866046] (+0.000000020) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF7D7C0 }
+[13:57:31.797866180] (+0.000000134) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x0 }
+[13:57:31.797866197] (+0.000000017) lib.eal.mem.free: { cpu_id = 0x0, name = "dpdk-test" }, { ptr = 0x17EF7DB40 }

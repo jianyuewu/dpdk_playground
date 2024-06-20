@@ -1,0 +1,5142 @@
+/* CTF 1.8 */
+typealias integer {size = 8; base = x;}:= uint8_t;
+typealias integer {size = 16; base = x;} := uint16_t;
+typealias integer {size = 32; base = x;} := uint32_t;
+typealias integer {size = 64; base = x;} := uint64_t;
+typealias integer {size = 8; signed = true;}  := int8_t;
+typealias integer {size = 16; signed = true;} := int16_t;
+typealias integer {size = 32; signed = true;} := int32_t;
+typealias integer {size = 64; signed = true;} := int64_t;
+typealias integer {size = 64; base = x;} := uintptr_t;
+typealias integer {size = 64; base = x;} := long;
+typealias integer {size = 8; signed = false; encoding = ASCII; } := string_bounded_t;
+
+typealias integer {size = 64; base = x;} := size_t;
+typealias floating_point {
+    exp_dig = 8;
+    mant_dig = 24;
+} := float;
+
+typealias floating_point {
+    exp_dig = 11;
+    mant_dig = 53;
+} := double;
+
+trace {
+    major = 1;
+    minor = 8;
+    uuid = "000034a8-01dc-4370-8f50-222ddd514176";
+    byte_order = le;
+    packet.header := struct {
+	    uint32_t magic;
+	    uint8_t  uuid[16];
+    };
+};
+
+env {
+    dpdk_version = "DPDK 23.07.0-rc1";
+    tracer_name = "dpdk";
+};
+
+clock {
+    name = "dpdk";
+    freq =           3417600000;
+    offset_s =          1690172155;
+    offset =          4866975300;
+};
+
+typealias integer {
+    size = 48; align = 1; signed = false;
+    map = clock.dpdk.value;
+} := uint48_clock_dpdk_t;
+
+stream {
+    packet.context := struct {
+         uint32_t cpu_id;
+         string_bounded_t name[32];
+    };
+    event.header := struct {
+          uint48_clock_dpdk_t timestamp;
+          uint16_t id;
+    } align(64);
+};
+
+event {
+    id = 0;
+    name = "lib.eventdev.configure";
+    fields := struct {
+        uint8_t dev_id;
+        uint32_t dev_conf_dequeue_timeout_ns;
+        int32_t dev_conf_nb_events_limit;
+        uint8_t dev_conf_nb_event_queues;
+        uint8_t dev_conf_nb_event_ports;
+        uint32_t dev_conf_nb_event_queue_flows;
+        uint32_t dev_conf_nb_event_port_dequeue_depth;
+        uint32_t dev_conf_nb_event_port_enqueue_depth;
+        uint32_t dev_conf_event_dev_cfg;
+        uint8_t dev_conf_nb_single_link_event_port_queues;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 1;
+    name = "lib.eventdev.queue.setup";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t queue_id;
+        uint32_t queue_conf_nb_atomic_flows;
+        uint32_t queue_conf_nb_atomic_order_sequences;
+        uint32_t queue_conf_event_queue_cfg;
+        uint8_t queue_conf_schedule_type;
+        uint8_t queue_conf_priority;
+    };
+};
+
+event {
+    id = 2;
+    name = "lib.eventdev.port.setup";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        int32_t port_conf_new_event_threshold;
+        uint16_t port_conf_dequeue_depth;
+        uint16_t port_conf_enqueue_depth;
+        uint32_t port_conf_event_port_cfg;
+        int32_t rc;
+        uintptr_t port_conf;
+    };
+};
+
+event {
+    id = 3;
+    name = "lib.eventdev.port.link";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uint16_t nb_links;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 4;
+    name = "lib.eventdev.port.unlink";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uint16_t nb_unlinks;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 5;
+    name = "lib.eventdev.start";
+    fields := struct {
+        uint8_t dev_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 6;
+    name = "lib.eventdev.stop";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 7;
+    name = "lib.eventdev.close";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 8;
+    name = "lib.eventdev.enq.burst";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uintptr_t ev_table;
+        uint16_t nb_events;
+        uintptr_t enq_mode_cb;
+    };
+};
+
+event {
+    id = 9;
+    name = "lib.eventdev.deq.burst";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uintptr_t ev_table;
+        uint16_t nb_events;
+    };
+};
+
+event {
+    id = 10;
+    name = "lib.eventdev.maintain";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        int32_t op;
+    };
+};
+
+event {
+    id = 11;
+    name = "lib.eventdev.rx.adapter.create";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t dev_id;
+        uintptr_t conf_cb;
+        uintptr_t conf_arg;
+    };
+};
+
+event {
+    id = 12;
+    name = "lib.eventdev.rx.adapter.free";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 13;
+    name = "lib.eventdev.rx.adapter.queue.add";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        int32_t rx_queue_id;
+        uint32_t queue_conf_rx_queue_flags;
+        uint16_t queue_conf_servicing_weight;
+        uint8_t queue_conf_ev_queue_id;
+        uint8_t queue_conf_ev_priority;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 14;
+    name = "lib.eventdev.rx.adapter.queue.del";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        int32_t rx_queue_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 15;
+    name = "lib.eventdev.rx.adapter.start";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 16;
+    name = "lib.eventdev.rx.adapter.stop";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 17;
+    name = "lib.eventdev.tx.adapter.create";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t dev_id;
+        int32_t port_conf_new_event_threshold;
+        uint16_t port_conf_dequeue_depth;
+        uint16_t port_conf_enqueue_depth;
+        uint32_t port_conf_event_port_cfg;
+        uintptr_t conf_cb;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 18;
+    name = "lib.eventdev.tx.adapter.free";
+    fields := struct {
+        uint8_t adptr_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 19;
+    name = "lib.eventdev.tx.adapter.queue.add";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        int32_t queue;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 20;
+    name = "lib.eventdev.tx.adapter.queue.del";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        int32_t queue;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 21;
+    name = "lib.eventdev.tx.adapter.start";
+    fields := struct {
+        uint8_t adptr_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 22;
+    name = "lib.eventdev.tx.adapter.stop";
+    fields := struct {
+        uint8_t adptr_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 23;
+    name = "lib.eventdev.tx.adapter.enq";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uintptr_t ev_table;
+        uint16_t nb_events;
+        uint8_t flags;
+    };
+};
+
+event {
+    id = 24;
+    name = "lib.eventdev.timer.create";
+    fields := struct {
+        uint16_t adapter_id;
+        uintptr_t adapter;
+        uintptr_t conf;
+        uint8_t conf_event_dev_id;
+        uint16_t conf_timer_adapter_id;
+        uint64_t conf_timer_tick_ns;
+        uint64_t conf_max_tmo_ns;
+        uint64_t conf_nb_timers;
+        uint64_t conf_flags;
+        uintptr_t conf_cb;
+    };
+};
+
+event {
+    id = 25;
+    name = "lib.eventdev.timer.start";
+    fields := struct {
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 26;
+    name = "lib.eventdev.timer.stop";
+    fields := struct {
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 27;
+    name = "lib.eventdev.timer.free";
+    fields := struct {
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 28;
+    name = "lib.eventdev.timer.burst";
+    fields := struct {
+        uintptr_t adapter;
+        uintptr_t evtims_table;
+        uint16_t nb_evtims;
+    };
+};
+
+event {
+    id = 29;
+    name = "lib.eventdev.timer.tick.burst";
+    fields := struct {
+        uintptr_t adapter;
+        uint64_t timeout_ticks;
+        uintptr_t evtims_table;
+        uint16_t nb_evtims;
+    };
+};
+
+event {
+    id = 30;
+    name = "lib.eventdev.timer.cancel";
+    fields := struct {
+        uintptr_t adapter;
+        uintptr_t evtims_table;
+        uint16_t nb_evtims;
+    };
+};
+
+event {
+    id = 31;
+    name = "lib.eventdev.crypto.create";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t dev_id;
+        uintptr_t port_config;
+        int32_t port_config_new_event_threshold;
+        uint16_t port_config_dequeue_depth;
+        uint16_t port_config_enqueue_depth;
+        uint32_t port_config_event_port_cfg;
+        int32_t mode;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 32;
+    name = "lib.eventdev.crypto.free";
+    fields := struct {
+        uint8_t adptr_id;
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 33;
+    name = "lib.eventdev.crypto.queue.add";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t cdev_id;
+        int32_t queue_pair_id;
+        uintptr_t conf;
+    };
+};
+
+event {
+    id = 34;
+    name = "lib.eventdev.crypto.queue.del";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t cdev_id;
+        int32_t queue_pair_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 35;
+    name = "lib.eventdev.crypto.start";
+    fields := struct {
+        uint8_t adptr_id;
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 36;
+    name = "lib.eventdev.crypto.stop";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 37;
+    name = "lib.eventdev.crypto.enq";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        uintptr_t ev_table;
+        uint16_t nb_events;
+    };
+};
+
+event {
+    id = 38;
+    name = "lib.eventdev.crypto.adapter_event_port_get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t event_port_id;
+    };
+};
+
+event {
+    id = 39;
+    name = "lib.eventdev.crypto.adapter_service_id_get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint32_t service_id;
+    };
+};
+
+event {
+    id = 40;
+    name = "lib.eventdev.crypto.adapter_vector_limits_get";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t cdev_id;
+        uintptr_t limits;
+    };
+};
+
+event {
+    id = 41;
+    name = "lib.eventdev.attr_get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint32_t attr_id;
+        uint32_t attr_value;
+    };
+};
+
+event {
+    id = 42;
+    name = "lib.eventdev.get_dev_id";
+    fields := struct {
+        string_bounded_t name[32];
+        int32_t dev_id;
+    };
+};
+
+event {
+    id = 43;
+    name = "lib.eventdev.info_get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev_info;
+        uintptr_t dev;
+    };
+};
+
+event {
+    id = 44;
+    name = "lib.eventdev.service_id_get";
+    fields := struct {
+        uint8_t dev_id;
+        uint32_t service_id;
+    };
+};
+
+event {
+    id = 45;
+    name = "lib.eventdev.socket.id";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        int32_t socket_id;
+    };
+};
+
+event {
+    id = 46;
+    name = "lib.eventdev.stop.flush.callback.register";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t callback;
+        uintptr_t userdata;
+    };
+};
+
+event {
+    id = 47;
+    name = "lib.eventdev.eth.rx.adapter.caps.get";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t eth_port_id;
+    };
+};
+
+event {
+    id = 48;
+    name = "lib.eventdev.eth.rx.adapter.cb.register";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        uintptr_t cb_fn;
+        uintptr_t cb_arg;
+    };
+};
+
+event {
+    id = 49;
+    name = "lib.eventdev.eth.rx.adapter.service.id.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint32_t service_id;
+    };
+};
+
+event {
+    id = 50;
+    name = "lib.eventdev.eth.rx.adapter.event.port.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t event_port_id;
+    };
+};
+
+event {
+    id = 51;
+    name = "lib.eventdev.eth.rx.adapter.vector.limits.get";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t eth_port_id;
+        uint16_t min_sz;
+        uint16_t max_sz;
+        uint8_t log2_sz;
+        uint64_t min_timeout_ns;
+        uint64_t max_timeout_ns;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 52;
+    name = "lib.eventdev.eth.rx.adapter.queue.stats.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        uint16_t rx_queue_id;
+        uintptr_t stats;
+    };
+};
+
+event {
+    id = 53;
+    name = "lib.eventdev.eth.rx.adapter.stats.reset";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 54;
+    name = "lib.eventdev.eth.rx.adapter.queue.stats.reset";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        uint16_t rx_queue_id;
+    };
+};
+
+event {
+    id = 55;
+    name = "lib.eventdev.eth.rx.adapter.instance.get";
+    fields := struct {
+        uint16_t eth_dev_id;
+        uint16_t rx_queue_id;
+        uint8_t rxa_inst_id;
+    };
+};
+
+event {
+    id = 56;
+    name = "lib.eventdev.eth.tx.adapter.caps.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint16_t eth_port_id;
+        uintptr_t eth_dev;
+    };
+};
+
+event {
+    id = 57;
+    name = "lib.eventdev.eth.tx.adapter.event.port.get";
+    fields := struct {
+        uint8_t id;
+    };
+};
+
+event {
+    id = 58;
+    name = "lib.eventdev.eth.tx.adapter.service.id.get";
+    fields := struct {
+        uint8_t id;
+        uint32_t service_id;
+    };
+};
+
+event {
+    id = 59;
+    name = "lib.eventdev.eth.tx.adapter.stats.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint64_t tx_retry;
+        uint64_t tx_packets;
+        uint64_t tx_dropped;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 60;
+    name = "lib.eventdev.eth.tx.adapter.stats.reset";
+    fields := struct {
+        uint8_t adptr_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 61;
+    name = "lib.eventdev.eth.tx.adapter.instance.get";
+    fields := struct {
+        uint16_t eth_dev_id;
+        uint16_t tx_queue_id;
+        uint8_t txa_inst_id;
+    };
+};
+
+event {
+    id = 62;
+    name = "lib.eventdev.port.attr.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t port_id;
+        uint32_t attr_id;
+        uint32_t attr_value;
+    };
+};
+
+event {
+    id = 63;
+    name = "lib.eventdev.port.default.conf.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t port_id;
+        uintptr_t port_conf;
+        int32_t port_conf_new_event_threshold;
+        uint16_t port_conf_dequeue_depth;
+        uint16_t port_conf_enqueue_depth;
+        uint32_t port_conf_event_port_cfg;
+    };
+};
+
+event {
+    id = 64;
+    name = "lib.eventdev.port.links.get";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+        int32_t count;
+    };
+};
+
+event {
+    id = 65;
+    name = "lib.eventdev.port.unlinks.in.progress";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t port_id;
+    };
+};
+
+event {
+    id = 66;
+    name = "lib.eventdev.queue.attr.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t queue_id;
+        uint32_t attr_id;
+        uint32_t attr_value;
+    };
+};
+
+event {
+    id = 67;
+    name = "lib.eventdev.queue.default.conf.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t queue_id;
+        uintptr_t queue_conf;
+        uint32_t queue_conf_nb_atomic_flows;
+        uint32_t queue_conf_nb_atomic_order_sequences;
+        uint32_t queue_conf_event_queue_cfg;
+        uint8_t queue_conf_schedule_type;
+        uint8_t queue_conf_priority;
+    };
+};
+
+event {
+    id = 68;
+    name = "lib.eventdev.ring.create";
+    fields := struct {
+        string_bounded_t name[32];
+        uint32_t count;
+        int32_t socket_id;
+        uint32_t flags;
+    };
+};
+
+event {
+    id = 69;
+    name = "lib.eventdev.ring.free";
+    fields := struct {
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 70;
+    name = "lib.eventdev.ring.init";
+    fields := struct {
+        uintptr_t r;
+        string_bounded_t name[32];
+        uint32_t count;
+        uint32_t flags;
+    };
+};
+
+event {
+    id = 71;
+    name = "lib.eventdev.ring.lookup";
+    fields := struct {
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 72;
+    name = "lib.eventdev.timer.adapter.caps.get";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 73;
+    name = "lib.eventdev.timer.adapter.get.info";
+    fields := struct {
+        uintptr_t adapter;
+        uintptr_t adapter_info;
+        uint64_t adapter_info_min_resolution_ns;
+        uint64_t adapter_info_max_tmo_ns;
+        uint32_t adapter_info_caps;
+        uint16_t adapter_info_event_dev_port_id;
+    };
+};
+
+event {
+    id = 74;
+    name = "lib.eventdev.timer.adapter.lookup";
+    fields := struct {
+        uint16_t adapter_id;
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 75;
+    name = "lib.eventdev.timer.adapter.service.id.get";
+    fields := struct {
+        uintptr_t adapter;
+        uint32_t service_id;
+    };
+};
+
+event {
+    id = 76;
+    name = "lib.eventdev.vector.pool.create";
+    fields := struct {
+        uintptr_t mp;
+        string_bounded_t name[32];
+        int32_t socket_id;
+        uint32_t size;
+        uint32_t cache_size;
+        uint32_t elt_size;
+    };
+};
+
+event {
+    id = 77;
+    name = "lib.eventdev.eth.rx.adapter.create.with.params";
+    fields := struct {
+        uint8_t adptr_id;
+        uint8_t dev_id;
+        uintptr_t port_config;
+        int32_t port_config_new_event_threshold;
+        uint16_t port_config_dequeue_depth;
+        uint16_t port_config_enqueue_depth;
+        uint32_t port_config_event_port_cfg;
+        uintptr_t rxa_params;
+        uint16_t rxa_params_event_buf_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 78;
+    name = "lib.eventdev.eth.rx.adapter.queue.conf.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uint16_t eth_dev_id;
+        uint16_t rx_queue_id;
+        uintptr_t queue_conf;
+    };
+};
+
+event {
+    id = 79;
+    name = "lib.eventdev.queue.attr.set";
+    fields := struct {
+        uint8_t dev_id;
+        uint8_t queue_id;
+        uint32_t attr_id;
+        uint64_t attr_value;
+    };
+};
+
+event {
+    id = 80;
+    name = "lib.eventdev.port.quiesce";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t port_id;
+        uintptr_t args;
+    };
+};
+
+event {
+    id = 81;
+    name = "lib.eventdev.crypto.adapter.caps.get";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t dev;
+        uint8_t cdev_id;
+        uintptr_t cdev;
+    };
+};
+
+event {
+    id = 82;
+    name = "lib.eventdev.dequeue.timeout.ticks";
+    fields := struct {
+        uint8_t dev_id;
+        uint64_t ns;
+        uintptr_t timeout_ticks;
+    };
+};
+
+event {
+    id = 83;
+    name = "lib.eventdev.crypto.adapter.stats.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uintptr_t stats;
+        uint64_t event_poll_count;
+        uint64_t event_deq_count;
+        uint64_t crypto_enq_count;
+        uint64_t crypto_enq_fail;
+        uint64_t crypto_deq_count;
+        uint64_t event_enq_count;
+        uint64_t event_enq_retry_count;
+        uint64_t event_enq_fail_count;
+    };
+};
+
+event {
+    id = 84;
+    name = "lib.eventdev.crypto.adapter.stats.reset";
+    fields := struct {
+        uint8_t adptr_id;
+    };
+};
+
+event {
+    id = 85;
+    name = "lib.eventdev.rx.adapter.stats.get";
+    fields := struct {
+        uint8_t adptr_id;
+        uintptr_t stats;
+    };
+};
+
+event {
+    id = 86;
+    name = "lib.eventdev.tx.adapter.queue.start";
+    fields := struct {
+        uint16_t eth_dev_id;
+        uint16_t tx_queue_id;
+    };
+};
+
+event {
+    id = 87;
+    name = "lib.eventdev.tx.adapter.queue.stop";
+    fields := struct {
+        uint16_t eth_dev_id;
+        uint16_t tx_queue_id;
+    };
+};
+
+event {
+    id = 88;
+    name = "lib.eventdev.timer.adapter.stats.get";
+    fields := struct {
+        uintptr_t adapter;
+        uintptr_t stats;
+    };
+};
+
+event {
+    id = 89;
+    name = "lib.eventdev.timer.adapter.stats.reset";
+    fields := struct {
+        uintptr_t adapter;
+    };
+};
+
+event {
+    id = 90;
+    name = "lib.eventdev.timer.remaining.ticks.get";
+    fields := struct {
+        uintptr_t adapter;
+        uintptr_t evtim;
+        uintptr_t ticks_remaining;
+    };
+};
+
+event {
+    id = 91;
+    name = "lib.cryptodev.configure";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t conf_nb_queue_pairs;
+        int64_t conf_ff_disable;
+    };
+};
+
+event {
+    id = 92;
+    name = "lib.cryptodev.start";
+    fields := struct {
+        uint8_t dev_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 93;
+    name = "lib.cryptodev.stop";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 94;
+    name = "lib.cryptodev.close";
+    fields := struct {
+        uint8_t dev_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 95;
+    name = "lib.cryptodev.queue.pair.setup";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t queue_pair_id;
+        uint32_t conf_nb_descriptors;
+        uintptr_t conf_mp_session;
+    };
+};
+
+event {
+    id = 96;
+    name = "lib.cryptodev.sym.pool.create";
+    fields := struct {
+        string_bounded_t name[32];
+        uint32_t nb_elts;
+        uint32_t elt_size;
+        uint32_t cache_size;
+        uint16_t user_data_size;
+        uintptr_t mempool;
+    };
+};
+
+event {
+    id = 97;
+    name = "lib.cryptodev.asym.pool.create";
+    fields := struct {
+        string_bounded_t name[32];
+        uint32_t nb_elts;
+        uint16_t user_data_size;
+        uint32_t cache_size;
+        uintptr_t mempool;
+    };
+};
+
+event {
+    id = 98;
+    name = "lib.cryptodev.sym.create";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sess;
+        uintptr_t xforms;
+        uintptr_t mempool;
+    };
+};
+
+event {
+    id = 99;
+    name = "lib.cryptodev.asym.create";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t xforms;
+        uintptr_t mempool;
+        uintptr_t sess;
+    };
+};
+
+event {
+    id = 100;
+    name = "lib.cryptodev.sym.free";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sess;
+    };
+};
+
+event {
+    id = 101;
+    name = "lib.cryptodev.asym.free";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sess;
+    };
+};
+
+event {
+    id = 102;
+    name = "lib.cryptodev.enq.burst";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t ops;
+        uint16_t nb_ops;
+    };
+};
+
+event {
+    id = 103;
+    name = "lib.cryptodev.deq.burst";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t ops;
+        uint16_t nb_ops;
+    };
+};
+
+event {
+    id = 104;
+    name = "lib.cryptodev.callback.register";
+    fields := struct {
+        uint8_t dev_id;
+        int32_t _event;
+        uintptr_t cb_fn;
+    };
+};
+
+event {
+    id = 105;
+    name = "lib.cryptodev.callback.unregister";
+    fields := struct {
+        uint8_t dev_id;
+        int32_t _event;
+        uintptr_t cb_fn;
+    };
+};
+
+event {
+    id = 106;
+    name = "lib.cryptodev.device.count.by.driver";
+    fields := struct {
+        uint8_t driver_id;
+        uint8_t dev_count;
+    };
+};
+
+event {
+    id = 107;
+    name = "lib.cryptodev.devices.get";
+    fields := struct {
+        string_bounded_t driver_name[32];
+        uint8_t count;
+    };
+};
+
+event {
+    id = 108;
+    name = "lib.cryptodev.driver.id.get";
+    fields := struct {
+        string_bounded_t name[32];
+        int32_t driver_id;
+    };
+};
+
+event {
+    id = 109;
+    name = "lib.cryptodev.driver.name.get";
+    fields := struct {
+        uint8_t driver_id;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 110;
+    name = "lib.cryptodev.get.aead.algo.enum";
+    fields := struct {
+        string_bounded_t algo_string[32];
+        int32_t algo_enum;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 111;
+    name = "lib.cryptodev.get.auth.algo.enum";
+    fields := struct {
+        string_bounded_t algo_string[32];
+        int32_t algo_enum;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 112;
+    name = "lib.cryptodev.get.cipher.algo.enum";
+    fields := struct {
+        string_bounded_t algo_string[32];
+        int32_t algo_enum;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 113;
+    name = "lib.cryptodev.get.aead.algo.string";
+    fields := struct {
+        int32_t algo_enum;
+        string_bounded_t algo_string[32];
+    };
+};
+
+event {
+    id = 114;
+    name = "lib.cryptodev.get.auth.algo.string";
+    fields := struct {
+        int32_t algo_enum;
+        string_bounded_t algo_string[32];
+    };
+};
+
+event {
+    id = 115;
+    name = "lib.cryptodev.get.cipher.algo.string";
+    fields := struct {
+        int32_t algo_enum;
+        string_bounded_t algo_string[32];
+    };
+};
+
+event {
+    id = 116;
+    name = "lib.cryptodev.get.dev.id";
+    fields := struct {
+        string_bounded_t name[32];
+        int32_t ret;
+    };
+};
+
+event {
+    id = 117;
+    name = "lib.cryptodev.get.feature.name";
+    fields := struct {
+        uint64_t flag;
+    };
+};
+
+event {
+    id = 118;
+    name = "lib.cryptodev.get.sec.ctx";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sec_ctx;
+    };
+};
+
+event {
+    id = 119;
+    name = "lib.cryptodev.info.get";
+    fields := struct {
+        uint8_t dev_id;
+        string_bounded_t driver_name[32];
+    };
+};
+
+event {
+    id = 120;
+    name = "lib.cryptodev.is.valid.dev";
+    fields := struct {
+        uint8_t dev_id;
+        uint32_t ret;
+    };
+};
+
+event {
+    id = 121;
+    name = "lib.cryptodev.name.get";
+    fields := struct {
+        uint8_t dev_id;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 122;
+    name = "lib.cryptodev.queue.pair.count";
+    fields := struct {
+        uintptr_t dev;
+        string_bounded_t name[32];
+        uint8_t socket_id;
+        uint8_t dev_id;
+        uint16_t nb_queue_pairs;
+    };
+};
+
+event {
+    id = 123;
+    name = "lib.cryptodev.socket.id";
+    fields := struct {
+        uint8_t dev_id;
+        string_bounded_t name[32];
+        int32_t socket_id;
+    };
+};
+
+event {
+    id = 124;
+    name = "lib.cryptodev.stats.get";
+    fields := struct {
+        uint8_t dev_id;
+        uint64_t stats_enqueued_count;
+        uint64_t stats_dequeued_count;
+        uint64_t stats_enqueue_err_count;
+        uint64_t stats_dequeue_err_count;
+    };
+};
+
+event {
+    id = 125;
+    name = "lib.cryptodev.stats.reset";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 126;
+    name = "lib.cryptodev.sym.capability.check.aead";
+    fields := struct {
+        uintptr_t capability;
+        int32_t capability_xform_type;
+        uint16_t key_size;
+        uint16_t digest_size;
+        uint16_t aad_size;
+        uint16_t iv_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 127;
+    name = "lib.cryptodev.sym.capability.check.auth";
+    fields := struct {
+        uintptr_t capability;
+        int32_t capability_xform_type;
+        uint16_t key_size;
+        uint16_t digest_size;
+        uint16_t iv_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 128;
+    name = "lib.cryptodev.sym.capability.check.cipher";
+    fields := struct {
+        uintptr_t capability;
+        int32_t capability_xform_type;
+        uint16_t key_size;
+        uint16_t iv_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 129;
+    name = "lib.cryptodev.sym.capability.get";
+    fields := struct {
+        uint8_t dev_id;
+        string_bounded_t driver_name[32];
+        uint8_t driver_id;
+        int32_t idx_type;
+        uintptr_t sym_capability;
+    };
+};
+
+event {
+    id = 130;
+    name = "lib.cryptodev.sym.get.private.session.size";
+    fields := struct {
+        uint8_t dev_id;
+        uint32_t priv_sess_size;
+    };
+};
+
+event {
+    id = 131;
+    name = "lib.cryptodev.asym.capability.get";
+    fields := struct {
+        string_bounded_t driver_name[32];
+        uint8_t driver_id;
+        int32_t idx_type;
+        uintptr_t asym_cap;
+    };
+};
+
+event {
+    id = 132;
+    name = "lib.cryptodev.asym.get.private.session.size";
+    fields := struct {
+        uint8_t dev_id;
+        uint32_t priv_sess_size;
+    };
+};
+
+event {
+    id = 133;
+    name = "lib.cryptodev.asym.get.xform.enum";
+    fields := struct {
+        string_bounded_t xform_string[32];
+        int32_t xform_enum;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 134;
+    name = "lib.cryptodev.asym.get.xform.string";
+    fields := struct {
+        int32_t xform_enum;
+        string_bounded_t xform_string[32];
+    };
+};
+
+event {
+    id = 135;
+    name = "lib.cryptodev.asym.xform.capability.check.modlen";
+    fields := struct {
+        uintptr_t capability;
+        uint16_t modlen;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 136;
+    name = "lib.cryptodev.asym.xform.capability.check.optype";
+    fields := struct {
+        uint32_t op_types;
+        int32_t op_type;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 137;
+    name = "lib.cryptodev.sym.cpu.crypto.process";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sess;
+    };
+};
+
+event {
+    id = 138;
+    name = "lib.cryptodev.sym.session.get.user.data";
+    fields := struct {
+        uintptr_t sess;
+        uintptr_t data;
+    };
+};
+
+event {
+    id = 139;
+    name = "lib.cryptodev.sym.session.set.user.data";
+    fields := struct {
+        uintptr_t sess;
+        uintptr_t data;
+        uint16_t size;
+    };
+};
+
+event {
+    id = 140;
+    name = "lib.cryptodev.get.qp.status";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t queue_pair_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 141;
+    name = "lib.cryptodev.configure.raw.dp.ctx";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        int32_t sess_type;
+    };
+};
+
+event {
+    id = 142;
+    name = "lib.cryptodev.get.raw.dp.ctx.size";
+    fields := struct {
+        uint8_t dev_id;
+    };
+};
+
+event {
+    id = 143;
+    name = "lib.cryptodev.add.deq.callback";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t cb_fn;
+    };
+};
+
+event {
+    id = 144;
+    name = "lib.cryptodev.add.enq.callback";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t cb_fn;
+    };
+};
+
+event {
+    id = 145;
+    name = "lib.cryptodev.remove.deq.callback";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t fn;
+    };
+};
+
+event {
+    id = 146;
+    name = "lib.cryptodev.remove.enq.callback";
+    fields := struct {
+        uint8_t dev_id;
+        uint16_t qp_id;
+        uintptr_t fn;
+    };
+};
+
+event {
+    id = 147;
+    name = "lib.cryptodev.asym.session.get.user.data";
+    fields := struct {
+        uintptr_t sess;
+        uintptr_t data;
+    };
+};
+
+event {
+    id = 148;
+    name = "lib.cryptodev.asym.session.set.user.data";
+    fields := struct {
+        uintptr_t sess;
+        uintptr_t data;
+        uint16_t size;
+    };
+};
+
+event {
+    id = 149;
+    name = "lib.cryptodev.session.event.mdata.set";
+    fields := struct {
+        uint8_t dev_id;
+        uintptr_t sess;
+        int32_t op_type;
+        int32_t sess_type;
+        uintptr_t ev_mdata;
+        uint16_t size;
+    };
+};
+
+event {
+    id = 150;
+    name = "lib.cryptodev.allocate.driver";
+    fields := struct {
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 151;
+    name = "lib.cryptodev.op.pool.create";
+    fields := struct {
+        string_bounded_t name[32];
+        int32_t socket_id;
+        int32_t type;
+        uint32_t nb_elts;
+        uintptr_t mp;
+    };
+};
+
+event {
+    id = 152;
+    name = "lib.cryptodev.count";
+    fields := struct {
+        uint8_t nb_devs;
+    };
+};
+
+event {
+    id = 153;
+    name = "lib.ethdev.configure";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t nb_rx_q;
+        uint16_t nb_tx_q;
+        uint32_t dev_conf_link_speeds;
+        uint32_t dev_conf_rxmode_mq_mode;
+        uint32_t dev_conf_rxmode_mtu;
+        uint64_t dev_conf_rxmode_offloads;
+        uint32_t dev_conf_txmode_mq_mode;
+        uint64_t dev_conf_txmode_offloads;
+        uint32_t dev_conf_lpbk_mode;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 154;
+    name = "lib.ethdev.rxq.setup";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        uint16_t nb_rx_desc;
+        uintptr_t mp;
+        uint8_t rx_conf_rx_thresh_pthresh;
+        uint8_t rx_conf_rx_thresh_hthresh;
+        uint8_t rx_conf_rx_thresh_wthresh;
+        uint8_t rx_conf_rx_drop_en;
+        uint8_t rx_conf_rx_deferred_start;
+        uint64_t rx_conf_offloads;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 155;
+    name = "lib.ethdev.txq.setup";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        uint16_t nb_tx_desc;
+        uint8_t tx_conf_tx_thresh_pthresh;
+        uint8_t tx_conf_tx_thresh_hthresh;
+        uint8_t tx_conf_tx_thresh_wthresh;
+        uint8_t tx_conf_tx_deferred_start;
+        uint16_t tx_conf_tx_free_thresh;
+        uint64_t tx_conf_offloads;
+    };
+};
+
+event {
+    id = 156;
+    name = "lib.ethdev.start";
+    fields := struct {
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 157;
+    name = "lib.ethdev.stop";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 158;
+    name = "lib.ethdev.close";
+    fields := struct {
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 159;
+    name = "lib.ethdev.rx.burst";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t pkt_tbl;
+        uint16_t nb_rx;
+    };
+};
+
+event {
+    id = 160;
+    name = "lib.ethdev.tx.burst";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t pkts_tbl;
+        uint16_t nb_pkts;
+    };
+};
+
+event {
+    id = 161;
+    name = "lib.ethdev.call_rx_callbacks";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t rx_pkts;
+        uint16_t nb_rx;
+        uint16_t nb_pkts;
+    };
+};
+
+event {
+    id = 162;
+    name = "lib.ethdev.call_tx_callbacks";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t tx_pkts;
+        uint16_t nb_pkts;
+    };
+};
+
+event {
+    id = 163;
+    name = "lib.ethdev.iterator_init";
+    fields := struct {
+        string_bounded_t devargs[32];
+    };
+};
+
+event {
+    id = 164;
+    name = "lib.ethdev.iterator_next";
+    fields := struct {
+        uintptr_t iter;
+        uint16_t id;
+    };
+};
+
+event {
+    id = 165;
+    name = "lib.ethdev.iterator_cleanup";
+    fields := struct {
+        uintptr_t iter;
+    };
+};
+
+event {
+    id = 166;
+    name = "lib.ethdev.find_next";
+    fields := struct {
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 167;
+    name = "lib.ethdev.find_next_of";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t parent;
+    };
+};
+
+event {
+    id = 168;
+    name = "lib.ethdev.find_next_sibling";
+    fields := struct {
+        uint16_t port_id_start;
+        uint16_t ref_port_id;
+        uint16_t ret;
+    };
+};
+
+event {
+    id = 169;
+    name = "lib.ethdev.is_valid_port";
+    fields := struct {
+        uint16_t port_id;
+        int32_t is_valid;
+    };
+};
+
+event {
+    id = 170;
+    name = "lib.ethdev.find_next_owned_by";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t owner_id;
+    };
+};
+
+event {
+    id = 171;
+    name = "lib.ethdev.owner_new";
+    fields := struct {
+        uint64_t owner_id;
+    };
+};
+
+event {
+    id = 172;
+    name = "lib.ethdev.owner_set";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t owner;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 173;
+    name = "lib.ethdev.owner_unset";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t owner_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 174;
+    name = "lib.ethdev.owner_delete";
+    fields := struct {
+        uint64_t owner_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 175;
+    name = "lib.ethdev.owner_get";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t owner_id;
+        string_bounded_t owner_name[32];
+    };
+};
+
+event {
+    id = 176;
+    name = "lib.ethdev.socket_id";
+    fields := struct {
+        uint16_t port_id;
+        int32_t socket_id;
+    };
+};
+
+event {
+    id = 177;
+    name = "lib.ethdev.get_sec_ctx";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t ctx;
+    };
+};
+
+event {
+    id = 178;
+    name = "lib.ethdev.count_avail";
+    fields := struct {
+        uint16_t count;
+    };
+};
+
+event {
+    id = 179;
+    name = "lib.ethdev.count_total";
+    fields := struct {
+        uint16_t count;
+    };
+};
+
+event {
+    id = 180;
+    name = "lib.ethdev.get_name_by_port";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 181;
+    name = "lib.ethdev.get_port_by_name";
+    fields := struct {
+        string_bounded_t name[32];
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 182;
+    name = "lib.ethdev.rx_queue_start";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 183;
+    name = "lib.ethdev.rx_queue_stop";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 184;
+    name = "lib.ethdev.tx_queue_start";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 185;
+    name = "lib.ethdev.tx_queue_stop";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 186;
+    name = "lib.ethdev.speed_bitflag";
+    fields := struct {
+        uint32_t speed;
+        int32_t duplex;
+        uint32_t ret;
+    };
+};
+
+event {
+    id = 187;
+    name = "lib.ethdev.rx_offload_name";
+    fields := struct {
+        uint64_t offload;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 188;
+    name = "lib.ethdev.tx_offload_name";
+    fields := struct {
+        uint64_t offload;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 189;
+    name = "lib.ethdev.capability_name";
+    fields := struct {
+        uint64_t capability;
+        string_bounded_t name[32];
+    };
+};
+
+event {
+    id = 190;
+    name = "lib.ethdev.set_link_up";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 191;
+    name = "lib.ethdev.set_link_down";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 192;
+    name = "lib.ethdev.reset";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 193;
+    name = "lib.ethdev.is_removed";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 194;
+    name = "lib.ethdev.rx_hairpin_queue_setup";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        uint16_t nb_rx_desc;
+        uintptr_t conf;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 195;
+    name = "lib.ethdev.tx_hairpin_queue_setup";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        uint16_t nb_tx_desc;
+        uintptr_t conf;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 196;
+    name = "lib.ethdev.hairpin_bind";
+    fields := struct {
+        uint16_t tx_port;
+        uint16_t rx_port;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 197;
+    name = "lib.ethdev.hairpin_unbind";
+    fields := struct {
+        uint16_t tx_port;
+        uint16_t rx_port;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 198;
+    name = "lib.ethdev.hairpin_get_peer_ports";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t peer_ports;
+        size_t len;
+        uint32_t direction;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 199;
+    name = "lib.ethdev.tx_buffer_drop_callback";
+    fields := struct {
+        uintptr_t pkts;
+        uint16_t unsent;
+    };
+};
+
+event {
+    id = 200;
+    name = "lib.ethdev.tx_buffer_count_callback";
+    fields := struct {
+        uintptr_t pkts;
+        uint16_t unsent;
+        uint64_t count;
+    };
+};
+
+event {
+    id = 201;
+    name = "lib.ethdev.tx_buffer_set_err_callback";
+    fields := struct {
+        uintptr_t buffer_error_callback;
+        uintptr_t buffer_error_userdata;
+    };
+};
+
+event {
+    id = 202;
+    name = "lib.ethdev.tx_buffer_init";
+    fields := struct {
+        uintptr_t buffer;
+        uint16_t size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 203;
+    name = "lib.ethdev.tx_done_cleanup";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uint32_t free_cnt;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 204;
+    name = "lib.ethdev.promiscuous_enable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t promiscuous;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 205;
+    name = "lib.ethdev.promiscuous_disable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t promiscuous;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 206;
+    name = "lib.ethdev.promiscuous_get";
+    fields := struct {
+        uint16_t port_id;
+        int32_t promiscuous;
+    };
+};
+
+event {
+    id = 207;
+    name = "lib.ethdev.allmulticast_enable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t all_multicast;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 208;
+    name = "lib.ethdev.allmulticast_disable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t all_multicast;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 209;
+    name = "lib.ethdev.allmulticast_get";
+    fields := struct {
+        uint16_t port_id;
+        int32_t all_multicast;
+    };
+};
+
+event {
+    id = 210;
+    name = "lib.ethdev.link_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t link_link_speed;
+    };
+};
+
+event {
+    id = 211;
+    name = "lib.ethdev.link_get_nowait";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t link_link_speed;
+    };
+};
+
+event {
+    id = 212;
+    name = "lib.ethdev.link_speed_to_str";
+    fields := struct {
+        uint32_t link_speed;
+        string_bounded_t ret[32];
+    };
+};
+
+event {
+    id = 213;
+    name = "lib.ethdev.link_to_str";
+    fields := struct {
+        size_t len;
+        uint32_t link_link_speed;
+        string_bounded_t str[32];
+        int32_t ret;
+    };
+};
+
+event {
+    id = 214;
+    name = "lib.ethdev.stats_get";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t stats_rx_nombuf;
+        uint64_t stats_ipackets;
+        uint64_t stats_opackets;
+        uint64_t stats_ibytes;
+        uint64_t stats_obytes;
+        uint64_t stats_imissed;
+        uint64_t stats_ierrors;
+        uint64_t stats_oerrors;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 215;
+    name = "lib.ethdev.stats_reset";
+    fields := struct {
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 216;
+    name = "lib.ethdev.xstats_get_id_by_name";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t xstat_name[32];
+        uint64_t id;
+    };
+};
+
+event {
+    id = 217;
+    name = "lib.ethdev.xstats_get_names_by_id";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t xstats_names_name[32];
+        uint64_t ids;
+    };
+};
+
+event {
+    id = 218;
+    name = "lib.ethdev.xstats_get_names";
+    fields := struct {
+        uint16_t port_id;
+        int32_t i;
+        string_bounded_t xstats_names_name[32];
+        uint32_t size;
+        int32_t cnt_used_entries;
+    };
+};
+
+event {
+    id = 219;
+    name = "lib.ethdev.xstats_get_by_id";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t ids;
+        uintptr_t values;
+        uint32_t size;
+    };
+};
+
+event {
+    id = 220;
+    name = "lib.ethdev.xstats_get";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t xstats_id;
+        uint64_t xstats_value;
+    };
+};
+
+event {
+    id = 221;
+    name = "lib.ethdev.xstats_reset";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 222;
+    name = "lib.ethdev.set_tx_queue_stats_mapping";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        uint8_t stat_idx;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 223;
+    name = "lib.ethdev.set_rx_queue_stats_mapping";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        uint8_t stat_idx;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 224;
+    name = "lib.ethdev.fw_version_get";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t fw_version[32];
+        size_t fw_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 225;
+    name = "lib.ethdev.info_get";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t dev_info_driver_name[32];
+        uint16_t dev_info_min_mtu;
+        uint16_t dev_info_max_mtu;
+        uint32_t dev_info_min_rx_bufsize;
+        uint32_t dev_info_max_rx_pktlen;
+        uint16_t dev_info_max_rx_queues;
+        uint16_t dev_info_max_tx_queues;
+        uint32_t dev_info_max_mac_addrs;
+        uint64_t dev_info_rx_offload_capa;
+        uint64_t dev_info_tx_offload_capa;
+        uint64_t dev_info_rx_queue_offload_capa;
+        uint64_t dev_info_tx_queue_offload_capa;
+        uint16_t dev_info_reta_size;
+        uint8_t dev_info_hash_key_size;
+        uint64_t dev_info_flow_type_rss_offloads;
+        uint16_t dev_info_rx_desc_lim_nb_max;
+        uint16_t dev_info_rx_desc_lim_nb_min;
+        uint16_t dev_info_rx_desc_lim_nb_align;
+        uint16_t dev_info_tx_desc_lim_nb_max;
+        uint16_t dev_info_tx_desc_lim_nb_min;
+        uint16_t dev_info_tx_desc_lim_nb_align;
+        uint32_t dev_info_speed_capa;
+        uint16_t dev_info_nb_rx_queues;
+        uint16_t dev_info_nb_tx_queues;
+        uint64_t dev_info_dev_capa;
+    };
+};
+
+event {
+    id = 226;
+    name = "lib.ethdev.conf_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t dev_conf_link_speeds;
+        uint64_t dev_conf_rxmode_offloads;
+        uint64_t dev_conf_txmode_offloads;
+        uint32_t dev_conf_lpbk_mode;
+    };
+};
+
+event {
+    id = 227;
+    name = "lib.ethdev.get_supported_ptypes";
+    fields := struct {
+        uint16_t port_id;
+        int32_t supported_num;
+        int32_t num;
+        uint32_t ptypes;
+    };
+};
+
+event {
+    id = 228;
+    name = "lib.ethdev.set_ptypes";
+    fields := struct {
+        uint16_t port_id;
+        int32_t supported_num;
+        uint32_t num;
+        uint32_t set_ptypes;
+    };
+};
+
+event {
+    id = 229;
+    name = "lib.ethdev.macaddrs_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t num;
+    };
+};
+
+event {
+    id = 230;
+    name = "lib.ethdev.macaddr_get";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t len;
+        uint8_t mac_addr_addr_bytes[64];
+    };
+};
+
+event {
+    id = 231;
+    name = "lib.ethdev.get_mtu";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t mtu;
+    };
+};
+
+event {
+    id = 232;
+    name = "lib.ethdev.set_mtu";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t mtu;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 233;
+    name = "lib.ethdev.vlan_filter";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t vlan_id;
+        int32_t on;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 234;
+    name = "lib.ethdev.set_vlan_strip_on_queue";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t rx_queue_id;
+        int32_t on;
+    };
+};
+
+event {
+    id = 235;
+    name = "lib.ethdev.set_vlan_ether_type";
+    fields := struct {
+        uint16_t port_id;
+        int32_t vlan_type;
+        uint16_t tag_type;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 236;
+    name = "lib.ethdev.set_vlan_offload";
+    fields := struct {
+        uint16_t port_id;
+        int32_t offload_mask;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 237;
+    name = "lib.ethdev.get_vlan_offload";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 238;
+    name = "lib.ethdev.set_vlan_pvid";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t pvid;
+        int32_t on;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 239;
+    name = "lib.ethdev.flow_ctrl_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t fc_conf_high_water;
+        uint32_t fc_conf_low_water;
+        uint16_t fc_conf_pause_time;
+        uint16_t fc_conf_send_xon;
+        int32_t fc_conf_mode;
+        uint8_t fc_conf_mac_ctrl_frame_fwd;
+        uint8_t fc_conf_autoneg;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 240;
+    name = "lib.ethdev.flow_ctrl_set";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t fc_conf_high_water;
+        uint32_t fc_conf_low_water;
+        uint16_t fc_conf_pause_time;
+        uint16_t fc_conf_send_xon;
+        int32_t fc_conf_mode;
+        uint8_t fc_conf_mac_ctrl_frame_fwd;
+        uint8_t fc_conf_autoneg;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 241;
+    name = "lib.ethdev.priority_flow_ctrl_set";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t pfc_conf_fc_high_water;
+        uint32_t pfc_conf_fc_low_water;
+        uint16_t pfc_conf_fc_pause_time;
+        uint16_t pfc_conf_fc_send_xon;
+        int32_t pfc_conf_fc_mode;
+        uint8_t pfc_conf_fc_mac_ctrl_frame_fwd;
+        uint8_t pfc_conf_fc_autoneg;
+        uint8_t pfc_conf_priority;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 242;
+    name = "lib.ethdev.priority_flow_ctrl_queue_info_get";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t pfc_queue_info_tc_max;
+        int32_t pfc_queue_info_mode_capa;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 243;
+    name = "lib.ethdev.priority_flow_ctrl_queue_configure";
+    fields := struct {
+        uint16_t port_id;
+        int32_t pfc_queue_conf_mode;
+        uint16_t pfc_queue_conf_rx_pause_tx_qid;
+        uint16_t pfc_queue_conf_tx_pause_rx_qid;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 244;
+    name = "lib.ethdev.rss_reta_update";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t reta_conf_mask;
+        uint16_t reta_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 245;
+    name = "lib.ethdev.rss_reta_query";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t reta_conf_mask;
+        uint16_t reta_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 246;
+    name = "lib.ethdev.rss_hash_update";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t rss_conf_rss_key;
+        uint8_t rss_conf_rss_key_len;
+        uint64_t rss_conf_rss_hf;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 247;
+    name = "lib.ethdev.rss_hash_conf_get";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t rss_conf_rss_key;
+        uint8_t rss_conf_rss_key_len;
+        uint64_t rss_conf_rss_hf;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 248;
+    name = "lib.ethdev.udp_tunnel_port_add";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tunnel_udp_udp_port;
+        uint8_t tunnel_udp_prot_type;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 249;
+    name = "lib.ethdev.udp_tunnel_port_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tunnel_udp_udp_port;
+        uint8_t tunnel_udp_prot_type;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 250;
+    name = "lib.ethdev.led_on";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 251;
+    name = "lib.ethdev.led_off";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 252;
+    name = "lib.ethdev.fec_get_capability";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t speed_fec_capa;
+        uint32_t num;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 253;
+    name = "lib.ethdev.fec_get";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t fec_capa;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 254;
+    name = "lib.ethdev.fec_set";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t fec_capa;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 255;
+    name = "lib.ethdev.mac_addr_add";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t len;
+        uint8_t addr_addr_bytes[64];
+        uint32_t pool;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 256;
+    name = "lib.ethdev.mac_addr_remove";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t len;
+        uint8_t addr_addr_bytes[64];
+    };
+};
+
+event {
+    id = 257;
+    name = "lib.ethdev.default_mac_addr_set";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t len;
+        uint8_t addr_addr_bytes[64];
+    };
+};
+
+event {
+    id = 258;
+    name = "lib.ethdev.uc_hash_table_set";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t on;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 259;
+    name = "lib.ethdev.uc_all_hash_table_set";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t on;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 260;
+    name = "lib.ethdev.set_queue_rate_limit";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_idx;
+        uint16_t tx_rate;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 261;
+    name = "lib.ethdev.rx_avail_thresh_set";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uint8_t avail_thresh;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 262;
+    name = "lib.ethdev.rx_avail_thresh_query";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 263;
+    name = "lib.ethdev.callback_register";
+    fields := struct {
+        uint16_t port_id;
+        int32_t _event;
+        uintptr_t cb_fn;
+        uintptr_t cb_arg;
+    };
+};
+
+event {
+    id = 264;
+    name = "lib.ethdev.callback_unregister";
+    fields := struct {
+        uint16_t port_id;
+        int32_t _event;
+        uintptr_t cb_fn;
+        uintptr_t cb_arg;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 265;
+    name = "lib.ethdev.rx_intr_ctl";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t qid;
+        int32_t epfd;
+        int32_t op;
+        uintptr_t data;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 266;
+    name = "lib.ethdev.rx_intr_ctl_q_get_fd";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        int32_t fd;
+    };
+};
+
+event {
+    id = 267;
+    name = "lib.ethdev.rx_intr_ctl_q";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        int32_t epfd;
+        int32_t op;
+        uintptr_t data;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 268;
+    name = "lib.ethdev.rx_intr_enable";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 269;
+    name = "lib.ethdev.rx_intr_disable";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 270;
+    name = "lib.ethdev.add_rx_callback";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t fn;
+        uintptr_t user_param;
+        uintptr_t cb;
+    };
+};
+
+event {
+    id = 271;
+    name = "lib.ethdev.add_first_rx_callback";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t fn;
+        uintptr_t user_param;
+        uintptr_t cb;
+    };
+};
+
+event {
+    id = 272;
+    name = "lib.ethdev.add_tx_callback";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t fn;
+        uintptr_t user_param;
+        uintptr_t cb;
+    };
+};
+
+event {
+    id = 273;
+    name = "lib.ethdev.remove_rx_callback";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t user_cb;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 274;
+    name = "lib.ethdev.remove_tx_callback";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t user_cb;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 275;
+    name = "lib.ethdev.rx_queue_info_get";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t qinfo_mp;
+        uint8_t qinfo_conf_rx_drop_en;
+        uint64_t qinfo_conf_offloads;
+        uint8_t qinfo_scattered_rx;
+        uint8_t qinfo_queue_state;
+        uint16_t qinfo_nb_desc;
+        uint16_t qinfo_rx_buf_size;
+    };
+};
+
+event {
+    id = 276;
+    name = "lib.ethdev.tx_queue_info_get";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uint16_t qinfo_nb_desc;
+        uint8_t qinfo_queue_state;
+    };
+};
+
+event {
+    id = 277;
+    name = "lib.ethdev.rx_burst_mode_get";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uint64_t mode_flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 278;
+    name = "lib.ethdev.tx_burst_mode_get";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uint64_t mode_flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 279;
+    name = "lib.ethdev.get_monitor_addr";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t queue_id;
+        uintptr_t pmc_addr;
+        uint8_t pmc_size;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 280;
+    name = "lib.ethdev.set_mc_addr_list";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t nb_mc_addr;
+        uint8_t len;
+        uint8_t mc_addr_set[64];
+        int32_t ret;
+    };
+};
+
+event {
+    id = 281;
+    name = "lib.ethdev.timesync_enable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 282;
+    name = "lib.ethdev.timesync_disable";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 283;
+    name = "lib.ethdev.timesync_read_rx_timestamp";
+    fields := struct {
+        uint16_t port_id;
+        size_t timestamp_tv_sec;
+        long timestamp_tv_nsec;
+        uint32_t flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 284;
+    name = "lib.ethdev.timesync_read_tx_timestamp";
+    fields := struct {
+        uint16_t port_id;
+        size_t timestamp_tv_sec;
+        long timestamp_tv_nsec;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 285;
+    name = "lib.ethdev.timesync_adjust_time";
+    fields := struct {
+        uint16_t port_id;
+        int64_t delta;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 286;
+    name = "lib.ethdev.timesync_read_time";
+    fields := struct {
+        uint16_t port_id;
+        size_t time_tv_sec;
+        long time_tv_nsec;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 287;
+    name = "lib.ethdev.timesync_write_time";
+    fields := struct {
+        uint16_t port_id;
+        size_t time_tv_sec;
+        long time_tv_nsec;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 288;
+    name = "lib.ethdev.read_clock";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t clk;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 289;
+    name = "lib.ethdev.get_reg_info";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t info_data;
+        uint32_t info_offset;
+        uint32_t info_length;
+        uint32_t info_width;
+        uint32_t info_version;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 290;
+    name = "lib.ethdev.get_eeprom_length";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 291;
+    name = "lib.ethdev.get_eeprom";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t info_data;
+        uint32_t info_offset;
+        uint32_t info_length;
+        uint32_t info_magic;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 292;
+    name = "lib.ethdev.set_eeprom";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t info_data;
+        uint32_t info_offset;
+        uint32_t info_length;
+        uint32_t info_magic;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 293;
+    name = "lib.ethdev.get_module_info";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t modinfo_type;
+        uint32_t modinfo_eeprom_len;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 294;
+    name = "lib.ethdev.get_module_eeprom";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t info_data;
+        uint32_t info_offset;
+        uint32_t info_length;
+        uint32_t info_magic;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 295;
+    name = "lib.ethdev.get_dcb_info";
+    fields := struct {
+        uint16_t port_id;
+        uint8_t dcb_info_nb_tcs;
+        uint8_t num_user_priorities;
+        uint8_t dcb_info_prio_tc[64];
+        uint8_t num_tcs;
+        uint8_t dcb_info_tc_bws[64];
+        int32_t ret;
+    };
+};
+
+event {
+    id = 296;
+    name = "lib.ethdev.adjust_nb_rx_tx_desc";
+    fields := struct {
+        uint16_t port_id;
+    };
+};
+
+event {
+    id = 297;
+    name = "lib.ethdev.hairpin_capability_get";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t cap_max_nb_queues;
+        uint16_t cap_max_rx_2_tx;
+        uint16_t cap_max_tx_2_rx;
+        uint16_t cap_max_nb_desc;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 298;
+    name = "lib.ethdev.pool_ops_supported";
+    fields := struct {
+        uint16_t port_id;
+        string_bounded_t pool[32];
+        int32_t ret;
+    };
+};
+
+event {
+    id = 299;
+    name = "lib.ethdev.representor_info_get";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t info;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 300;
+    name = "lib.ethdev.rx_metadata_negotiate";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t features_val;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 301;
+    name = "lib.ethdev.ip_reassembly_capability_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t capa_timeout_ms;
+        uint16_t capa_max_frags;
+        uint16_t capa_flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 302;
+    name = "lib.ethdev.ip_reassembly_conf_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t conf_timeout_ms;
+        uint16_t conf_max_frags;
+        uint16_t conf_flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 303;
+    name = "lib.ethdev.ip_reassembly_conf_set";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t conf_timeout_ms;
+        uint16_t conf_max_frags;
+        uint16_t conf_flags;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 304;
+    name = "lib.ethdev.buffer_split_get_supported_hdr_ptypes";
+    fields := struct {
+        uint16_t port_id;
+        int32_t supported_num;
+        uint32_t ptypes;
+    };
+};
+
+event {
+    id = 305;
+    name = "lib.ethdev.cman_info_get";
+    fields := struct {
+        uint16_t port_id;
+        uint64_t info_modes_supported;
+        uint64_t info_objs_supported;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 306;
+    name = "lib.ethdev.cman_config_init";
+    fields := struct {
+        uint16_t port_id;
+        int32_t config_obj;
+        int32_t config_mode;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 307;
+    name = "lib.ethdev.cman_config_set";
+    fields := struct {
+        uint16_t port_id;
+        int32_t config_obj;
+        int32_t config_mode;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 308;
+    name = "lib.ethdev.cman_config_get";
+    fields := struct {
+        uint16_t port_id;
+        int32_t config_obj;
+        int32_t config_mode;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 309;
+    name = "lib.ethdev.count_aggr_ports";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 310;
+    name = "lib.ethdev.map_aggr_tx_affinity";
+    fields := struct {
+        uint16_t port_id;
+        uint16_t tx_queue_id;
+        uint8_t affinity;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 311;
+    name = "lib.ethdev.flow.copy";
+    fields := struct {
+        uintptr_t fd;
+        size_t len;
+        uint32_t attr_group;
+        uint32_t attr_priority;
+        uintptr_t items;
+        uintptr_t actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 312;
+    name = "lib.ethdev.flow.create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t attr;
+        uintptr_t pattern;
+        uintptr_t actions;
+        uintptr_t flow;
+    };
+};
+
+event {
+    id = 313;
+    name = "lib.ethdev.flow.destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t flow;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 314;
+    name = "lib.ethdev.flow.update";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t flow;
+        uintptr_t actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 315;
+    name = "lib.ethdev.flow.flush";
+    fields := struct {
+        uint16_t port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 316;
+    name = "lib.ethdev.flow.isolate";
+    fields := struct {
+        uint16_t port_id;
+        int32_t set;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 317;
+    name = "lib.ethdev.flow.query";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t flow;
+        uintptr_t action;
+        uintptr_t data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 318;
+    name = "lib.ethdev.flow.validate";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t attr;
+        uintptr_t pattern;
+        uintptr_t actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 319;
+    name = "lib.ethdev.flow.conv";
+    fields := struct {
+        int32_t op;
+        uintptr_t dst;
+        size_t size;
+        uintptr_t src;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 320;
+    name = "lib.ethdev.dynf_metadata_register";
+    fields := struct {
+        int32_t offset;
+        uint64_t flag;
+    };
+};
+
+event {
+    id = 321;
+    name = "lib.ethdev.flow.get_aged_flows";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t contexts;
+        uint32_t nb_contexts;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 322;
+    name = "lib.ethdev.flow.get_q_aged_flows";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t contexts;
+        uint32_t nb_contexts;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 323;
+    name = "lib.ethdev.flow.tunnel_decap_set";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t tunnel;
+        uintptr_t actions;
+        uintptr_t num_of_actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 324;
+    name = "lib.ethdev.flow.tunnel_match";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t tunnel;
+        uintptr_t items;
+        uintptr_t num_of_items;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 325;
+    name = "lib.ethdev.flow.get_restore_info";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t m;
+        uintptr_t info;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 326;
+    name = "lib.ethdev.flow.tunnel_action_decap_release";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t actions;
+        uint32_t num_of_actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 327;
+    name = "lib.ethdev.flow.tunnel_item_release";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t items;
+        uint32_t num_of_items;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 328;
+    name = "lib.ethdev.flow.action_handle_create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t conf;
+        uintptr_t action;
+        uintptr_t handle;
+    };
+};
+
+event {
+    id = 329;
+    name = "lib.ethdev.flow.action_handle_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 330;
+    name = "lib.ethdev.flow.action_handle_update";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        uintptr_t update;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 331;
+    name = "lib.ethdev.flow.action_handle_query";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        uintptr_t data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 332;
+    name = "lib.ethdev.flow.flex_item_create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t conf;
+        uintptr_t handle;
+    };
+};
+
+event {
+    id = 333;
+    name = "lib.ethdev.flow.flex_item_release";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 334;
+    name = "lib.ethdev.flow.pick_transfer_proxy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t proxy_port_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 335;
+    name = "lib.ethdev.flow.info_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t port_info_max_nb_queues;
+        uint32_t port_info_max_nb_counters;
+        uint32_t port_info_max_nb_aging_objects;
+        uint32_t port_info_max_nb_meters;
+        uint32_t port_info_max_nb_conn_tracks;
+        uint32_t port_info_supported_flags;
+        uintptr_t queue_info;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 336;
+    name = "lib.ethdev.flow.configure";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t port_attr_nb_counters;
+        uint32_t port_attr_nb_aging_objects;
+        uint32_t port_attr_nb_meters;
+        uint32_t port_attr_nb_conn_tracks;
+        uint32_t port_attr_flags;
+        uint16_t nb_queue;
+        uintptr_t queue_attr;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 337;
+    name = "lib.ethdev.flow.pattern_template_create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t template_attr;
+        uintptr_t pattern;
+        uintptr_t tmplate;
+    };
+};
+
+event {
+    id = 338;
+    name = "lib.ethdev.flow.pattern_template_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t pattern_template;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 339;
+    name = "lib.ethdev.flow.actions_template_create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t template_attr;
+        uintptr_t actions;
+        uintptr_t masks;
+        uintptr_t tmplate;
+    };
+};
+
+event {
+    id = 340;
+    name = "lib.ethdev.flow.actions_template_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t actions_template;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 341;
+    name = "lib.ethdev.flow.template_table_create";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t table_attr_nb_flows;
+        uint32_t table_attr_flow_attr_group;
+        uint32_t table_attr_flow_attr_priority;
+        uintptr_t pattern_templates;
+        uint8_t nb_pattern_templates;
+        uintptr_t actions_templates;
+        uint8_t nb_actions_templates;
+        uintptr_t table;
+    };
+};
+
+event {
+    id = 342;
+    name = "lib.ethdev.flow.template_table_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t template_table;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 343;
+    name = "lib.ethdev.flow.async_create";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t template_table;
+        uintptr_t pattern;
+        uint8_t pattern_template_index;
+        uintptr_t actions;
+        uint8_t actions_template_index;
+        uintptr_t user_data;
+        uintptr_t flow;
+    };
+};
+
+event {
+    id = 344;
+    name = "lib.ethdev.flow.async_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t flow;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 345;
+    name = "lib.ethdev.flow.async_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t flow;
+        uintptr_t actions;
+        uint8_t actions_template_index;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 346;
+    name = "lib.ethdev.flow.push";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 347;
+    name = "lib.ethdev.flow.pull";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t res;
+        uint16_t n_res;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 348;
+    name = "lib.ethdev.flow.async_action_handle_create";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t indir_action_conf;
+        uintptr_t action;
+        uintptr_t user_data;
+        uintptr_t handle;
+    };
+};
+
+event {
+    id = 349;
+    name = "lib.ethdev.flow.async_action_handle_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t action_handle;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 350;
+    name = "lib.ethdev.flow.async_action_handle_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t action_handle;
+        uintptr_t update;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 351;
+    name = "lib.ethdev.flow.async.action.handle.query";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t action_handle;
+        uintptr_t data;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 352;
+    name = "lib.ethdev.mtr.capabilities_get";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t cap;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 353;
+    name = "lib.ethdev.mtr.create";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uintptr_t params;
+        int32_t shared;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 354;
+    name = "lib.ethdev.mtr.destroy";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 355;
+    name = "lib.ethdev.mtr.meter_disable";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 356;
+    name = "lib.ethdev.mtr.meter_dscp_table_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uintptr_t dscp_table;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 357;
+    name = "lib.ethdev.mtr.meter_enable";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 358;
+    name = "lib.ethdev.mtr.meter_profile_add";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t meter_profile_id;
+        uintptr_t profile;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 359;
+    name = "lib.ethdev.mtr.meter_profile_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t meter_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 360;
+    name = "lib.ethdev.mtr.meter_profile_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t meter_profile_id;
+        uintptr_t ret;
+    };
+};
+
+event {
+    id = 361;
+    name = "lib.ethdev.mtr.meter_profile_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uint32_t meter_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 362;
+    name = "lib.ethdev.mtr.stats_read";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uintptr_t stats;
+        uint64_t stats_mask;
+        int32_t clear;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 363;
+    name = "lib.ethdev.mtr.stats_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uint64_t stats_mask;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 364;
+    name = "lib.ethdev.mtr.meter_policy_add";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t policy_id;
+        uintptr_t policy;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 365;
+    name = "lib.ethdev.mtr.meter_policy_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t policy_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 366;
+    name = "lib.ethdev.mtr.meter_policy_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t policy_id;
+        uintptr_t ret;
+    };
+};
+
+event {
+    id = 367;
+    name = "lib.ethdev.mtr.meter_policy_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uint32_t meter_policy_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 368;
+    name = "lib.ethdev.mtr.meter_policy_validate";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t policy;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 369;
+    name = "lib.ethdev.mtr.meter_vlan_table_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        uintptr_t vlan_table;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 370;
+    name = "lib.ethdev.mtr.color_in_protocol_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 371;
+    name = "lib.ethdev.mtr.color_in_protocol_priority_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t proto;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 372;
+    name = "lib.ethdev.mtr.color_in_protocol_set";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t mtr_id;
+        int32_t proto;
+        uint32_t priority;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 373;
+    name = "lib.ethdev.tm.capabilities_get";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t cap;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 374;
+    name = "lib.ethdev.tm.get_number_of_leaf_nodes";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t n_leaf_nodes;
+    };
+};
+
+event {
+    id = 375;
+    name = "lib.ethdev.tm.hierarchy_commit";
+    fields := struct {
+        uint16_t port_id;
+        int32_t clear_on_fail;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 376;
+    name = "lib.ethdev.tm.level_capabilities_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t level_id;
+        uintptr_t cap;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 377;
+    name = "lib.ethdev.tm.mark_ip_dscp";
+    fields := struct {
+        uint16_t port_id;
+        int32_t mark_green;
+        int32_t mark_yellow;
+        int32_t mark_red;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 378;
+    name = "lib.ethdev.tm.mark_ip_ecn";
+    fields := struct {
+        uint16_t port_id;
+        int32_t mark_green;
+        int32_t mark_yellow;
+        int32_t mark_red;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 379;
+    name = "lib.ethdev.tm.mark_vlan_dei";
+    fields := struct {
+        uint16_t port_id;
+        int32_t mark_green;
+        int32_t mark_yellow;
+        int32_t mark_red;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 380;
+    name = "lib.ethdev.tm.node_add";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t parent_node_id;
+        uint32_t priority;
+        uint32_t weight;
+        uint32_t level_id;
+        uintptr_t params;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 381;
+    name = "lib.ethdev.tm.node_capabilities_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uintptr_t cap;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 382;
+    name = "lib.ethdev.tm.node_cman_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        int32_t cman;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 383;
+    name = "lib.ethdev.tm.node_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 384;
+    name = "lib.ethdev.tm.node_parent_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t parent_node_id;
+        uint32_t priority;
+        uint32_t weight;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 385;
+    name = "lib.ethdev.tm.node_resume";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 386;
+    name = "lib.ethdev.tm.node_shaper_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t shaper_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 387;
+    name = "lib.ethdev.tm.node_shared_shaper_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t shared_shaper_id;
+        int32_t add;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 388;
+    name = "lib.ethdev.tm.node_shared_wred_context_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t shared_wred_context_id;
+        int32_t add;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 389;
+    name = "lib.ethdev.tm.node_stats_read";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uintptr_t stats;
+        uint64_t stats_mask;
+        int32_t clear;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 390;
+    name = "lib.ethdev.tm.node_stats_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint64_t stats_mask;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 391;
+    name = "lib.ethdev.tm.node_suspend";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 392;
+    name = "lib.ethdev.tm.node_type_get";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        int32_t is_leaf;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 393;
+    name = "lib.ethdev.tm.node_wfq_weight_mode_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uintptr_t wfq_weight_mode;
+        uint32_t n_sp_priorities;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 394;
+    name = "lib.ethdev.tm.node_wred_context_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t node_id;
+        uint32_t wred_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 395;
+    name = "lib.ethdev.tm.shaper_profile_add";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shaper_profile_id;
+        uintptr_t profile;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 396;
+    name = "lib.ethdev.tm.shaper_profile_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shaper_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 397;
+    name = "lib.ethdev.tm.shared_shaper_add_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shared_shaper_id;
+        uint32_t shaper_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 398;
+    name = "lib.ethdev.tm.shared_shaper_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shared_shaper_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 399;
+    name = "lib.ethdev.tm.shared_wred_context_add_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shared_wred_context_id;
+        uint32_t wred_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 400;
+    name = "lib.ethdev.tm.shared_wred_context_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t shared_wred_context_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 401;
+    name = "lib.ethdev.tm.wred_profile_add";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t wred_profile_id;
+        uintptr_t profile;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 402;
+    name = "lib.ethdev.tm.wred_profile_delete";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t wred_profile_id;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 403;
+    name = "lib.ethdev.flow.action_list_handle_create";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t conf;
+        uintptr_t actions;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 404;
+    name = "lib.ethdev.flow.action_list_handle_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 405;
+    name = "lib.ethdev.flow.action_list_handle_query_update";
+    fields := struct {
+        uint16_t port_id;
+        uintptr_t handle;
+        uintptr_t update;
+        uintptr_t query;
+        int32_t mode;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 406;
+    name = "lib.ethdev.flow.async_action_list_handle_create";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t conf;
+        uintptr_t action;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 407;
+    name = "lib.ethdev.flow.async_action_list_handle_destroy";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t op_attr;
+        uintptr_t handle;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 408;
+    name = "lib.ethdev.flow.async_action_list_handle_query_update";
+    fields := struct {
+        uint16_t port_id;
+        uint32_t queue_id;
+        uintptr_t attr;
+        uintptr_t handle;
+        uintptr_t update;
+        uintptr_t query;
+        int32_t mode;
+        uintptr_t user_data;
+        int32_t ret;
+    };
+};
+
+event {
+    id = 409;
+    name = "lib.mempool.ops.deq.bulk";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+    };
+};
+
+event {
+    id = 410;
+    name = "lib.mempool.ops.deq.contig";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t first_obj_table;
+        uint32_t nb_objs;
+    };
+};
+
+event {
+    id = 411;
+    name = "lib.mempool.ops.enq.bulk";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+    };
+};
+
+event {
+    id = 412;
+    name = "lib.mempool.generic.put";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+        uintptr_t cache;
+    };
+};
+
+event {
+    id = 413;
+    name = "lib.mempool.put.bulk";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+        uintptr_t cache;
+    };
+};
+
+event {
+    id = 414;
+    name = "lib.mempool.generic.get";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+        uintptr_t cache;
+    };
+};
+
+event {
+    id = 415;
+    name = "lib.mempool.get.bulk";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t obj_table;
+        uint32_t nb_objs;
+        uintptr_t cache;
+    };
+};
+
+event {
+    id = 416;
+    name = "lib.mempool.get.blocks";
+    fields := struct {
+        uintptr_t mempool;
+        uintptr_t first_obj_table;
+        uint32_t nb_objs;
+    };
+};
+
+event {
+    id = 417;
+    name = "lib.mempool.create";
+    fields := struct {
+        string_bounded_t name[32];
+        uint32_t nb_elts;
+        uint32_t elt_size;
+        uint32_t cache_size;
+        uint32_t private_data_size;
+        uintptr_t mp_init;
+        uintptr_t mp_init_arg;
+        uintptr_t obj_init;
+        uintptr_t obj_init_arg;
+        uint32_t flags;
+        uintptr_t mempool;
+        int32_t mempool_ops_index;
+    };
+};
+
+event {
+    id = 418;
+    name = "lib.mempool.create.empty";
+    fields := struct {
+        string_bounded_t name[32];
+        uint32_t nb_elts;
+        uint32_t elt_size;
+        uint32_t cache_size;
+        uint32_t private_data_size;
+        uint32_t flags;
+        uintptr_t mempool;
+        int32_t mempool_ops_index;
+    };
+};
+
+event {
+    id = 419;
+    name = "lib.mempool.free";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+    };
+};
+
+event {
+    id = 420;
+    name = "lib.mempool.populate.iova";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+        uintptr_t vaddr;
+        uint64_t iova;
+        size_t len;
+        uintptr_t free_cb;
+        uintptr_t opaque;
+    };
+};
+
+event {
+    id = 421;
+    name = "lib.mempool.populate.virt";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+        uintptr_t addr;
+        size_t len;
+        size_t pg_sz;
+        uintptr_t free_cb;
+        uintptr_t opaque;
+    };
+};
+
+event {
+    id = 422;
+    name = "lib.mempool.populate.default";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+    };
+};
+
+event {
+    id = 423;
+    name = "lib.mempool.populate.anon";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+    };
+};
+
+event {
+    id = 424;
+    name = "lib.mempool.cache_create";
+    fields := struct {
+        uint32_t size;
+        int32_t socket_id;
+        uintptr_t cache;
+        uint32_t cache_len;
+        uint32_t cache_flushthresh;
+    };
+};
+
+event {
+    id = 425;
+    name = "lib.mempool.cache.free";
+    fields := struct {
+        uintptr_t cache;
+    };
+};
+
+event {
+    id = 426;
+    name = "lib.mempool.default.cache";
+    fields := struct {
+        uintptr_t mempool;
+        uint32_t lcore_id;
+        uintptr_t default_cache;
+    };
+};
+
+event {
+    id = 427;
+    name = "lib.mempool.get.page.size";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+        size_t pg_sz;
+    };
+};
+
+event {
+    id = 428;
+    name = "lib.mempool.cache.flush";
+    fields := struct {
+        uintptr_t cache;
+        uintptr_t mempool;
+    };
+};
+
+event {
+    id = 429;
+    name = "lib.mempool.ops.populate";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+        uint32_t max_objs;
+        uintptr_t vaddr;
+        uint64_t iova;
+        size_t len;
+        uintptr_t obj_cb;
+        uintptr_t obj_cb_arg;
+    };
+};
+
+event {
+    id = 430;
+    name = "lib.mempool.ops.alloc";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+    };
+};
+
+event {
+    id = 431;
+    name = "lib.mempool.ops.free";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+    };
+};
+
+event {
+    id = 432;
+    name = "lib.mempool.set.ops.byname";
+    fields := struct {
+        uintptr_t mempool;
+        string_bounded_t mempool_name[32];
+        string_bounded_t name[32];
+        uintptr_t pool_config;
+    };
+};
+
+event {
+    id = 433;
+    name = "lib.eal.generic.void";
+    fields := struct {
+    };
+};
+
+event {
+    id = 434;
+    name = "lib.eal.generic.u64";
+    fields := struct {
+        uint64_t in;
+    };
+};
+
+event {
+    id = 435;
+    name = "lib.eal.generic.u32";
+    fields := struct {
+        uint32_t in;
+    };
+};
+
+event {
+    id = 436;
+    name = "lib.eal.generic.u16";
+    fields := struct {
+        uint16_t in;
+    };
+};
+
+event {
+    id = 437;
+    name = "lib.eal.generic.u8";
+    fields := struct {
+        uint8_t in;
+    };
+};
+
+event {
+    id = 438;
+    name = "lib.eal.generic.i64";
+    fields := struct {
+        int64_t in;
+    };
+};
+
+event {
+    id = 439;
+    name = "lib.eal.generic.i32";
+    fields := struct {
+        int32_t in;
+    };
+};
+
+event {
+    id = 440;
+    name = "lib.eal.generic.i16";
+    fields := struct {
+        int16_t in;
+    };
+};
+
+event {
+    id = 441;
+    name = "lib.eal.generic.i8";
+    fields := struct {
+        int8_t in;
+    };
+};
+
+event {
+    id = 442;
+    name = "lib.eal.generic.int";
+    fields := struct {
+        int32_t in;
+    };
+};
+
+event {
+    id = 443;
+    name = "lib.eal.generic.long";
+    fields := struct {
+        long in;
+    };
+};
+
+event {
+    id = 444;
+    name = "lib.eal.generic.float";
+    fields := struct {
+        float in;
+    };
+};
+
+event {
+    id = 445;
+    name = "lib.eal.generic.double";
+    fields := struct {
+        double in;
+    };
+};
+
+event {
+    id = 446;
+    name = "lib.eal.generic.ptr";
+    fields := struct {
+        uintptr_t ptr;
+    };
+};
+
+event {
+    id = 447;
+    name = "lib.eal.generic.string";
+    fields := struct {
+        string_bounded_t str[32];
+    };
+};
+
+event {
+    id = 448;
+    name = "lib.eal.generic.size_t";
+    fields := struct {
+        size_t sz;
+    };
+};
+
+event {
+    id = 449;
+    name = "lib.eal.generic.func";
+    fields := struct {
+        string_bounded_t func[32];
+    };
+};
+
+event {
+    id = 450;
+    name = "lib.eal.generic.blob";
+    fields := struct {
+        uint8_t len;
+        uint8_t in[64];
+    };
+};
+
+event {
+    id = 451;
+    name = "lib.eal.alarm.set";
+    fields := struct {
+        uint64_t us;
+        uintptr_t cb_fn;
+        uintptr_t cb_arg;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 452;
+    name = "lib.eal.alarm.cancel";
+    fields := struct {
+        uintptr_t cb_fn;
+        uintptr_t cb_arg;
+        int32_t count;
+    };
+};
+
+event {
+    id = 453;
+    name = "lib.eal.mem.zmalloc";
+    fields := struct {
+        string_bounded_t type[32];
+        size_t size;
+        uint32_t _align;
+        int32_t socket;
+        uintptr_t ptr;
+    };
+};
+
+event {
+    id = 454;
+    name = "lib.eal.mem.malloc";
+    fields := struct {
+        string_bounded_t type[32];
+        size_t size;
+        uint32_t _align;
+        int32_t socket;
+        uintptr_t ptr;
+    };
+};
+
+event {
+    id = 455;
+    name = "lib.eal.mem.realloc";
+    fields := struct {
+        size_t size;
+        uint32_t _align;
+        int32_t socket;
+        uintptr_t ptr;
+    };
+};
+
+event {
+    id = 456;
+    name = "lib.eal.mem.free";
+    fields := struct {
+        uintptr_t ptr;
+    };
+};
+
+event {
+    id = 457;
+    name = "lib.eal.memzone.reserve";
+    fields := struct {
+        string_bounded_t name[32];
+        size_t len;
+        int32_t socket_id;
+        uint32_t flags;
+        uint32_t _align;
+        uint32_t bound;
+        uintptr_t mz;
+    };
+};
+
+event {
+    id = 458;
+    name = "lib.eal.memzone.lookup";
+    fields := struct {
+        string_bounded_t name[32];
+        uintptr_t memzone;
+    };
+};
+
+event {
+    id = 459;
+    name = "lib.eal.memzone.free";
+    fields := struct {
+        string_bounded_t name[32];
+        uintptr_t addr;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 460;
+    name = "lib.eal.thread.remote.launch";
+    fields := struct {
+        uintptr_t f;
+        uintptr_t arg;
+        uint32_t worker_id;
+        int32_t rc;
+    };
+};
+
+event {
+    id = 461;
+    name = "lib.eal.thread.lcore.ready";
+    fields := struct {
+        uint32_t lcore_id;
+        string_bounded_t cpuset[32];
+    };
+};
+
+event {
+    id = 462;
+    name = "lib.eal.thread.lcore.running";
+    fields := struct {
+        uint32_t lcore_id;
+        uintptr_t f;
+    };
+};
+
+event {
+    id = 463;
+    name = "lib.eal.thread.lcore.stopped";
+    fields := struct {
+        uint32_t lcore_id;
+    };
+};
+
+event {
+    id = 464;
+    name = "lib.eal.service.map.lcore";
+    fields := struct {
+        uint32_t id;
+        uint32_t lcore_id;
+        uint32_t enabled;
+    };
+};
+
+event {
+    id = 465;
+    name = "lib.eal.service.lcore.state.change";
+    fields := struct {
+        uint32_t lcore_id;
+        int32_t lcore_state;
+    };
+};
+
+event {
+    id = 466;
+    name = "lib.eal.service.lcore.start";
+    fields := struct {
+        uint32_t lcore_id;
+    };
+};
+
+event {
+    id = 467;
+    name = "lib.eal.service.lcore.stop";
+    fields := struct {
+        uint32_t lcore_id;
+    };
+};
+
+event {
+    id = 468;
+    name = "lib.eal.service.run.begin";
+    fields := struct {
+        uint32_t id;
+        uint32_t lcore_id;
+    };
+};
+
+event {
+    id = 469;
+    name = "lib.eal.service.run.state.set";
+    fields := struct {
+        uint32_t id;
+        uint32_t run_state;
+    };
+};
+
+event {
+    id = 470;
+    name = "lib.eal.service.run.end";
+    fields := struct {
+        uint32_t id;
+        uint32_t lcore_id;
+    };
+};
+
+event {
+    id = 471;
+    name = "lib.eal.service.component.register";
+    fields := struct {
+        int32_t id;
+        string_bounded_t service_name[32];
+    };
+};
+
+event {
+    id = 472;
+    name = "lib.eal.intr.register";
+    fields := struct {
+        int32_t rc;
+        int32_t handle_dev_fd;
+        int32_t handle_fd;
+        int32_t handle_type;
+        uint32_t handle_max_intr;
+        uint32_t handle_nb_efd;
+        uintptr_t cb;
+        uintptr_t cb_arg;
+    };
+};
+
+event {
+    id = 473;
+    name = "lib.eal.intr.unregister";
+    fields := struct {
+        int32_t rc;
+        int32_t handle_dev_fd;
+        int32_t handle_fd;
+        int32_t handle_type;
+        uint32_t handle_max_intr;
+        uint32_t handle_nb_efd;
+        uintptr_t cb;
+        uintptr_t cb_arg;
+    };
+};
+
+event {
+    id = 474;
+    name = "lib.eal.intr.enable";
+    fields := struct {
+        int32_t rc;
+        int32_t handle_dev_fd;
+        int32_t handle_fd;
+        int32_t handle_type;
+        uint32_t handle_max_intr;
+        uint32_t handle_nb_efd;
+    };
+};
+
+event {
+    id = 475;
+    name = "lib.eal.intr.disable";
+    fields := struct {
+        int32_t rc;
+        int32_t handle_dev_fd;
+        int32_t handle_fd;
+        int32_t handle_type;
+        uint32_t handle_max_intr;
+        uint32_t handle_nb_efd;
+    };
+};
+
